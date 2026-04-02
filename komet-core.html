@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Komet Core Dashboard – Koronet</title><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f172a;--muted:#64748b;--surface:#fff;--bg:#f1f5f9;--border:#e2e8f0;--accent:#1d4ed8;--accent2:#7c3aed;--radius:12px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+.nav{background:#0f172a;padding:0 40px;display:flex;align-items:center;gap:0;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:100}
+.nav-brand{font-family:'DM Serif Display',serif;color:#fff;font-size:1rem;padding:12px 20px 12px 0;margin-right:12px;border-right:1px solid #334155}
+.nav a{color:#94a3b8;text-decoration:none;font-size:.78rem;font-weight:500;padding:12px 16px;transition:color .15s,background .15s;border-bottom:2px solid transparent}
+.nav a:hover{color:#e2e8f0;background:#1e293b}
+.nav a.active{color:#fff;border-bottom-color:var(--accent)}
+.nav .badge{display:inline-block;background:#ef4444;color:#fff;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:99px;margin-left:4px;vertical-align:top}
+.nav .lock{font-size:.65rem;margin-left:3px;opacity:.6}
+.header{background:var(--ink);color:#fff;padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-family:'DM Serif Display',serif;font-size:1.9rem}
+.header p{font-size:.8rem;color:#94a3b8;margin-top:4px}
+.refresh-note{font-size:.75rem;color:#64748b;background:#1e293b;padding:8px 16px;border-radius:8px;text-align:right}
+.refresh-note span{display:block;color:#94a3b8;font-size:.7rem;margin-top:2px}
+.main{padding:32px 40px;max-width:1600px;margin:0 auto}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.kpi-icon{font-size:1.4rem}.kpi-value{font-size:2.2rem;font-weight:600;line-height:1}
+.kpi-label{font-size:.78rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.charts-three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px}
+@media(max-width:1100px){.charts-three{grid-template-columns:1fr}.charts-row{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.card-title{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:20px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bar-label{font-size:.82rem;width:180px;flex-shrink:0}
+.bar-track{flex:1;background:var(--bg);border-radius:99px;height:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px}
+.bar-count{font-size:.8rem;font-weight:600;width:24px;text-align:right;color:var(--muted)}
+.stage-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.stage-name{font-size:.82rem;width:200px;flex-shrink:0}
+.stage-bar-wrap{flex:1;background:var(--bg);border-radius:6px;height:28px;overflow:hidden}
+.stage-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px}
+.stage-count{font-size:.85rem;font-weight:600;width:28px;text-align:right}
+.table-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.table-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.table-header h2{font-family:'DM Serif Display',serif;font-size:1.1rem}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+thead th{background:#f8fafc;padding:10px 14px;text-align:left;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:hover{background:#f8fafc}
+tbody td{padding:12px 14px;vertical-align:middle}
+.col-name{max-width:220px}.project-name{font-weight:500}.project-sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.col-stage{max-width:160px;font-size:.78rem}
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.72rem;font-weight:600;white-space:nowrap}
+.progress-wrap{display:flex;align-items:center;gap:8px}
+.progress-bar{flex:1;min-width:60px;height:6px;background:var(--bg);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+.progress-label{font-size:.75rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-bar input,.filter-bar select{padding:6px 12px;border:1px solid var(--border);border-radius:8px;font-size:.8rem;font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);outline:none}
+.filter-bar input:focus,.filter-bar select:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(29,78,216,.12)}
+.group-header td{cursor:pointer}
+.group-header:hover td{filter:brightness(.96)}
+.has-notes:hover{background:#f0f4ff !important}
+.notes-icon{font-size:.65rem;margin-left:4px;opacity:.5}
+.notes-row td{border-left-color:var(--accent) !important}
+.alerts-section{margin-top:28px}
+.alert-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:12px;border-left:4px solid}
+.alert-card.critical{border-left-color:#ef4444}
+.alert-card.warning{border-left-color:#f59e0b}
+.alert-card.info{border-left-color:#3b82f6}
+.alert-card .alert-project{font-weight:600;font-size:.88rem;margin-bottom:6px}
+.alert-card .alert-msg{font-size:.8rem;color:var(--muted);margin-bottom:3px}
+.alert-card .alert-lead{font-size:.72rem;color:var(--muted)}
+.alert-card .alert-action{font-size:.78rem;color:var(--accent);font-weight:500;margin-top:6px;font-style:italic}
+#loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#1e293b;border-radius:16px;padding:48px 40px;text-align:center;max-width:380px;width:90%;box-shadow:0 25px 60px rgba(0,0,0,.5)}
+.login-box h1{font-family:'DM Serif Display',serif;color:#fff;font-size:1.5rem;margin-bottom:4px}
+.login-box .sub{color:#64748b;font-size:.78rem;margin-bottom:28px}
+.login-box input{width:100%;padding:12px 16px;border:1px solid #334155;border-radius:8px;background:#0f172a;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;margin-bottom:12px}
+.login-box button{width:100%;padding:12px;border:none;border-radius:8px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer}
+#pwdError{color:#ef4444;font-size:.78rem;margin-top:12px;display:none}
+.donut-wrap{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.donut-legend{display:flex;flex-direction:column;gap:8px}
+.donut-legend-item{display:flex;align-items:center;gap:8px;font-size:.82rem}
+.donut-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.workload-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.workload-name{font-size:.82rem;width:160px;flex-shrink:0;font-weight:500}
+.workload-bar{flex:1;height:24px;border-radius:6px;overflow:hidden;display:flex;background:var(--bg)}
+.workload-count{font-size:.82rem;font-weight:600;width:30px;text-align:right;color:var(--muted)}
+.workload-overloaded{color:#ef4444;font-weight:700}
+.section-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:28px 0 16px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.exec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px}
+@media(max-width:900px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.exec-card h3{font-family:'DM Serif Display',serif;font-size:.95rem;margin-bottom:12px}
+.exec-card ul{list-style:none;padding:0}
+.exec-card li{font-size:.82rem;padding:6px 0;border-bottom:1px solid var(--border);color:var(--ink)}
+.exec-card li:last-child{border-bottom:none}</style></head><body><nav class="nav"><span class="nav-brand">Alba PMO</span><a href="all-projects.html">All Projects</a><a href="komet-core.html" class="active">Komet Core</a><a href="network.html">Network</a><a href="action.html">Action<span class="badge">12</span><span class="lock">🔒</span></a><a href="executive.html">Executive<span class="lock">🔒</span></a></nav><div class="header"><div><h1>Komet Core Dashboard</h1><p>Koronet · Komet Core Team · Generated by Alba</p></div><div class="refresh-note">Last updated: April 2, 2026 at 04:20 PM<span>Ask Alba to refresh anytime</span></div></div><div class="main">
+    <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-icon">📋</div><div class="kpi-value" style="color:#1e293b">25</div><div class="kpi-label">Total Projects</div></div>
+    <div class="kpi-card"><div class="kpi-icon">📈</div><div class="kpi-value" style="color:#2563eb">43%</div><div class="kpi-label">Avg Completion</div></div>
+    <div class="kpi-card"><div class="kpi-icon">⚠️</div><div class="kpi-value" style="color:#ef4444">7</div><div class="kpi-label">Late / At Risk</div></div>
+    <div class="kpi-card"><div class="kpi-icon">✅</div><div class="kpi-value" style="color:#22c55e">9</div><div class="kpi-label">On Track</div></div></div>
+    <div class="charts-row">
+      <div class="card"><div class="card-title">Health Distribution</div><div class="bar-row"><div class="bar-label">🟢 On Track</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:#22c55e"></div></div><div class="bar-count">9</div></div><div class="bar-row"><div class="bar-label">🟡 At Risk</div><div class="bar-track"><div class="bar-fill" style="width:4%;background:#f59e0b"></div></div><div class="bar-count">1</div></div><div class="bar-row"><div class="bar-label">🔴 Late</div><div class="bar-track"><div class="bar-fill" style="width:24%;background:#ef4444"></div></div><div class="bar-count">6</div></div><div class="bar-row"><div class="bar-label">🟣 On Hold</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:#8b5cf6"></div></div><div class="bar-count">3</div></div><div class="bar-row"><div class="bar-label">⚪ Not Started</div><div class="bar-track"><div class="bar-fill" style="width:24%;background:#94a3b8"></div></div><div class="bar-count">6</div></div></div>
+      <div class="card"><div class="card-title">By Stage</div><div class="stage-row"><div class="stage-name">Kickoff and Preparation</div><div class="stage-bar-wrap"><div class="stage-bar" style="width:44%"></div></div><div class="stage-count">11</div></div><div class="stage-row"><div class="stage-name">Training and Activation</div><div class="stage-bar-wrap"><div class="stage-bar" style="width:40%"></div></div><div class="stage-count">10</div></div><div class="stage-row"><div class="stage-name">Go-Live and Growth</div><div class="stage-bar-wrap"><div class="stage-bar" style="width:8%"></div></div><div class="stage-count">2</div></div><div class="stage-row"><div class="stage-name">Completed</div><div class="stage-bar-wrap"><div class="stage-bar" style="width:8%"></div></div><div class="stage-count">2</div></div></div>
+    </div>
+    <div class="charts-row">
+      <div class="card"><div class="card-title">Team Workload</div><div class="workload-row"><div class="workload-name">Milena Mezamell</div><div class="workload-bar"><div style="width:33%;background:#22c55e;height:100%" title="On Track: 3"></div><div style="width:11%;background:#f59e0b;height:100%" title="At Risk: 1"></div><div style="width:33%;background:#ef4444;height:100%" title="Late: 3"></div><div style="width:11%;background:#8b5cf6;height:100%" title="On Hold: 1"></div><div style="width:11%;background:#94a3b8;height:100%" title="Not Started: 1"></div></div><div class="workload-count workload-overloaded">9!</div></div><div class="workload-row"><div class="workload-name">Valentina Espinel</div><div class="workload-bar"><div style="width:14%;background:#22c55e;height:100%" title="On Track: 1"></div><div style="width:14%;background:#ef4444;height:100%" title="Late: 1"></div><div style="width:29%;background:#8b5cf6;height:100%" title="On Hold: 2"></div><div style="width:43%;background:#94a3b8;height:100%" title="Not Started: 3"></div></div><div class="workload-count ">7</div></div><div class="workload-row"><div class="workload-name">Manuel Szajowicz</div><div class="workload-bar"><div style="width:50%;background:#22c55e;height:100%" title="On Track: 3"></div><div style="width:17%;background:#ef4444;height:100%" title="Late: 1"></div><div style="width:33%;background:#94a3b8;height:100%" title="Not Started: 2"></div></div><div class="workload-count ">6</div></div><div class="workload-row"><div class="workload-name">George Velez</div><div class="workload-bar"><div style="width:67%;background:#22c55e;height:100%" title="On Track: 2"></div><div style="width:33%;background:#ef4444;height:100%" title="Late: 1"></div></div><div class="workload-count ">3</div></div></div>
+      <div class="card"><div class="card-title">Upcoming Go-Lives (60 days)</div><div class="table-wrap"><table><thead><tr><th>Project</th><th>Health</th><th>Go-Live</th><th>Days Left</th><th>Completion</th><th>Risk Score</th><th>Lead</th></tr></thead><tbody><tr><td style="font-weight:500">Komet Core Whosaler - Riverside Wholesale Florists KY</td><td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td><td>Apr 7, 2026</td><td style="font-weight:600">5d</td><td>81%</td><td style="color:#22c55e;font-weight:600">19</td><td>Milena Mezamell</td></tr><tr><td style="font-weight:500">Komet Core Whosaler - San Jose Floral Service LLC</td><td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td><td>Apr 17, 2026</td><td style="font-weight:600">15d</td><td>31%</td><td style="color:#f59e0b;font-weight:600">69</td><td>George Velez</td></tr><tr><td style="font-weight:500">Komet Core Importer/Grower Universal Flowers Farm Inc</td><td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td><td>Apr 17, 2026</td><td style="font-weight:600">15d</td><td>30%</td><td style="color:#f59e0b;font-weight:600">70</td><td>George Velez</td></tr><tr><td style="font-weight:500">Komet Core Whosaler - JFS Wholesale Floral</td><td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td><td>Apr 20, 2026</td><td style="font-weight:600">18d</td><td>56%</td><td style="color:#f59e0b;font-weight:600">44</td><td>Manuel Szajowicz</td></tr><tr><td style="font-weight:500">Komet Core Whosaler - Heirloom Home Decor</td><td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td><td>Apr 28, 2026</td><td style="font-weight:600">26d</td><td>3%</td><td style="color:#ef4444;font-weight:600">97</td><td>Milena Mezamell</td></tr><tr><td style="font-weight:500">FedEx" Transition SOAP API to REST API</td><td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td><td>May 1, 2026</td><td style="font-weight:600">29d</td><td>23%</td><td style="color:#f59e0b;font-weight:600">77</td><td>George Velez</td></tr></tbody></table></div></div>
+    </div>
+    <div class="card" style="margin-bottom:16px;border-left:4px solid #f59e0b"><div class="card-title">📋 Capacity Alert</div><div style="font-size:.82rem;margin-bottom:4px">⚠️ <strong>Milena Mezamell</strong> has 9 active projects (recommended max: 8)</div></div>
+    <div class="table-card"><div class="table-header"><h2>Komet Core Projects</h2><div class="filter-bar"><input type="text" id="s" placeholder="🔍 Search..." oninput="f()" style="width:200px"><select id="hf" onchange="f()"><option value="">All Health</option><option>On Track</option><option>At Risk</option><option>Late</option><option>On Hold</option><option>Not Started</option></select><select id="cf" onchange="f()"><option value="">All Categories</option><option value="komet-core">Komet Core</option><option value="esuite">e-Suite</option><option value="payments">Payments</option><option value="multilocation">Multilocation</option><option value="eshop">e-Shop</option><option value="unosof">Unosof</option><option value="k2k">K2K</option><option value="fedex">FedEx</option><option value="procurement">Koronet Procurement</option><option value="other">Other</option></select><select id="sf" onchange="f()"><option value="">All Stages</option><option>Kickoff and Preparation</option><option>Training and Activation</option><option>Go-Live and Growth</option><option>Completed</option></select></div></div><div class="table-wrap"><table><thead><tr><th>Project</th><th>Health</th><th>Stage</th><th>Lead</th><th>Completion</th><th>Kick Off</th><th>Initial Go Live</th><th>Go Live</th><th>Days to Go Live</th></tr></thead><tbody id="tb"><tr class="group-header" data-category="komet-core"><td colspan="10" style="background:#2563eb10;border-left:4px solid #2563eb;padding:10px 14px;font-weight:600;font-size:.85rem;color:#2563eb"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#2563eb;margin-right:8px"></span>Komet Core <span style="font-weight:400;color:var(--muted);margin-left:8px">16 projects</span></td></tr><tr data-category="komet-core" data-health="Late" data-lead="Valentina Espinel" class="has-notes" data-notes-id="row_komet-core_0" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Importer/Grower FGS.Flowers <span class="notes-icon">💬</span></div><div class="project-sub">New Accounts</div></td>
+        <td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>Valentina Espinel</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:86%"></div></div><span class="progress-label">86%</span></div></td>
+        <td>Nov 28, 2025</td>
+        <td style="color:var(--muted)">Mar 23, 2026</td>
+        <td>Apr 1, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-1d</td>
+      </tr><tr class="notes-row" id="row_komet-core_0" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> Two accounts have now been created to fulfill the multilayer requirement.</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> 3/30/2026  No hemos podido salir al aire debido a sus negociaciones con Elite.</div></td></tr><tr data-category="komet-core" data-health="Late" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_komet-core_1" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Nova Packaging Solutions , Inc - Komet Core <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:86%"></div></div><span class="progress-label">86%</span></div></td>
+        <td>Sep 8, 2025</td>
+        <td style="color:var(--muted)">Apr 1, 2026</td>
+        <td>Apr 1, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-1d</td>
+      </tr><tr class="notes-row" id="row_komet-core_1" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> On the training side, the Payments section still needs reinforcement. The client mentioned that they recently hired a new user who will be responsible for payments, so I am currently waiting for that person to join in order to provide the training.</div></td></tr><tr data-category="komet-core" data-health="Late" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_komet-core_2" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Whosaler - Riverside Wholesale Florists KY <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:81%"></div></div><span class="progress-label">81%</span></div></td>
+        <td>Oct 13, 2025</td>
+        <td style="color:var(--muted)">Mar 13, 2026</td>
+        <td>Apr 7, 2026</td>
+        <td style="color:#f59e0b;font-weight:600">5d</td>
+      </tr><tr class="notes-row" id="row_komet-core_2" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> The customer agreed to go live with the commitment to process payments through Koronet Payments for 10% of their sales.
+The go-live was delayed by one week because the project lead had a family matter and had to take time off from work.</div></td></tr><tr data-category="komet-core" data-health="Late" data-lead="George Velez" class="has-notes" data-notes-id="row_komet-core_3" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Importer/Grower Universal Flowers Farm Inc <span class="notes-icon">💬</span></div><div class="project-sub">New Accounts</div></td>
+        <td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>George Velez</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div><span class="progress-label">30%</span></div></td>
+        <td>Feb 27, 2026</td>
+        <td style="color:var(--muted)">May 10, 2026</td>
+        <td>Apr 17, 2026</td>
+        <td style="color:#64748b;font-weight:600">15d</td>
+      </tr><tr class="notes-row" id="row_komet-core_3" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> Importer starting new operation. Their main operation is a wholesaler in New Jersey, ColGardens.</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> GV 03/24/2026: Account is late as they're aware of the payment methods that are required to be collected, to meet required Milestone for Go-Live. Only the ColGardens account will have a Payment Method as it's the only real "Active" buyer/customer.</div></td></tr><tr data-category="komet-core" data-health="On Hold" data-lead="Valentina Espinel" class="has-notes" data-notes-id="row_komet-core_4" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Importer/Grower Hortensias Cabogana Cia Ltda <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#8b5cf6;background:#f5f3ff">🟣 On Hold</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>Valentina Espinel</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:28%"></div></div><span class="progress-label">28%</span></div></td>
+        <td>May 15, 2024</td>
+        <td style="color:var(--muted)">May 14, 2026</td>
+        <td>Mar 27, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-6d</td>
+      </tr><tr class="notes-row" id="row_komet-core_4" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> Cliente bajo una exception en donde no hay payment method, no hay success form, no hay ningun trigger ya que viene de un acuerdo de agrocheck .
+
+La implementación es de una cuenta k2k + ecommerce vendor</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> 3/24 se pausa training hasta que el cliente agregue metodo de pago. 
+3/16 Confirmado que no hay limitación tecnológica 
+para que se vea en procurement  fresh farms ya que la info viene de salesforce tipo de cliente</div></td></tr><tr data-category="komet-core" data-health="On Hold" data-lead="Valentina Espinel" class="has-notes" data-notes-id="row_komet-core_5" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Importer/Grower *Flores de la Hacienda <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#8b5cf6;background:#f5f3ff">🟣 On Hold</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Valentina Espinel</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>—</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr class="notes-row" id="row_komet-core_5" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> Full training for a new employee</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> 3/16/26 
+Christiian medina asked us to postpne for this week.</div></td></tr><tr data-category="komet-core" data-health="On Track" data-lead="Manuel Szajowicz" >
+        <td class="col-name"><div class="project-name">Moonlight Flowers Corp / Kosmo Flowers: Moonlight Flowers Corp: Komet Core 2025 </div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Completed</td>
+        <td>Manuel Szajowicz</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><span class="progress-label">100%</span></div></td>
+        <td>Apr 28, 2025</td>
+        <td style="color:var(--muted)">Jun 30, 2025</td>
+        <td>Jun 2, 2025</td>
+        <td style="color:#ef4444;font-weight:600">-304d</td>
+      </tr><tr data-category="komet-core" data-health="On Track" data-lead="Valentina Espinel" class="has-notes" data-notes-id="row_komet-core_7" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Whosaler - Zeidler Floral <span class="notes-icon">💬</span></div><div class="project-sub">New Accounts</div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Go-Live and Growth</td>
+        <td>Valentina Espinel</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div><span class="progress-label">80%</span></div></td>
+        <td>Sep 15, 2025</td>
+        <td style="color:var(--muted)">Mar 20, 2026</td>
+        <td>Mar 20, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-13d</td>
+      </tr><tr class="notes-row" id="row_komet-core_7" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> Account coming from FCS. Blocked for more than 120 days due to QuickBooks.</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> 3/30 slow ecommerce sales however on track .  This week we will start pushing eshop training</div></td></tr><tr data-category="komet-core" data-health="On Track" data-lead="Manuel Szajowicz" class="has-notes" data-notes-id="row_komet-core_8" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Whosaler - JFS Wholesale Floral <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>Manuel Szajowicz</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div><span class="progress-label">56%</span></div></td>
+        <td>Feb 16, 2026</td>
+        <td style="color:var(--muted)">Apr 17, 2026</td>
+        <td>Apr 20, 2026</td>
+        <td style="color:#64748b;font-weight:600">18d</td>
+      </tr><tr class="notes-row" id="row_komet-core_8" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> Implementation on track, KP is active</div></td></tr><tr data-category="komet-core" data-health="On Track" data-lead="George Velez" class="has-notes" data-notes-id="row_komet-core_9" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Whosaler - San Jose Floral Service LLC <span class="notes-icon">💬</span></div><div class="project-sub">New Accounts</div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>George Velez</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:31%"></div></div><span class="progress-label">31%</span></div></td>
+        <td>Feb 27, 2026</td>
+        <td style="color:var(--muted)">May 22, 2026</td>
+        <td>Apr 17, 2026</td>
+        <td style="color:#64748b;font-weight:600">15d</td>
+      </tr><tr class="notes-row" id="row_komet-core_9" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> This is a relatively new operation, seeking to structure their internal business management process.</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> GV 03/24/2026: Customer's ORA, shows a GMV of $200k, which is projected as they are a new formed LLC. There are no initial Payment Methods to collect.</div></td></tr><tr data-category="komet-core" data-health="On Track" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_komet-core_10" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Whosaler - Heirloom Home Decor <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:3%"></div></div><span class="progress-label">3%</span></div></td>
+        <td>Mar 16, 2026</td>
+        <td style="color:var(--muted)">Jun 5, 2026</td>
+        <td>Apr 28, 2026</td>
+        <td style="color:#64748b;font-weight:600">26d</td>
+      </tr><tr class="notes-row" id="row_komet-core_10" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> The customer canceled two meetings and requested to reschedule the others. As a small business owner handling multiple responsibilities, they sometimes face challenges with time and availability.</div></td></tr><tr data-category="komet-core" data-health="Not Started" data-lead="Manuel Szajowicz" class="has-notes" data-notes-id="row_komet-core_11" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Importer/Grower Transit Loads ATL LLC <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#94a3b8;background:#f8fafc">⚪ Not Started</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Manuel Szajowicz</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>—</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr class="notes-row" id="row_komet-core_11" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> Missing ORA, payment method, success form and handoff. Mateo Morales said he would get in touch when the client is ready to start</div></td></tr><tr data-category="komet-core" data-health="Not Started" data-lead="Manuel Szajowicz" class="has-notes" data-notes-id="row_komet-core_12" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Whosaler - NORTHWEST WHOLESALE FLORIST <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#94a3b8;background:#f8fafc">⚪ Not Started</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Manuel Szajowicz</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>—</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr class="notes-row" id="row_komet-core_12" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> Ready to start, client asked to postpone the kick off. No date so far</div></td></tr><tr data-category="komet-core" data-health="Not Started" data-lead="Valentina Espinel" >
+        <td class="col-name"><div class="project-name">Komet Core Whosaler - SPRINGFIELD FLORIST SUPPLY INC </div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#94a3b8;background:#f8fafc">⚪ Not Started</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Valentina Espinel</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>Jul 1, 2026</td>
+        <td style="color:var(--muted)">Jul 1, 2026</td>
+        <td>Jul 1, 2026</td>
+        <td style="color:#64748b;font-weight:600">90d</td>
+      </tr><tr data-category="komet-core" data-health="Not Started" data-lead="Valentina Espinel" >
+        <td class="col-name"><div class="project-name">Komet Core Importer/Grower Expoflora Costa Rica </div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#94a3b8;background:#f8fafc">⚪ Not Started</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Valentina Espinel</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>—</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr data-category="komet-core" data-health="Not Started" data-lead="Valentina Espinel" class="has-notes" data-notes-id="row_komet-core_15" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Avon Valley Floral: Sunset Project Komet Core <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#94a3b8;background:#f8fafc">⚪ Not Started</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Valentina Espinel</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>Jun 1, 2026</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr class="notes-row" id="row_komet-core_15" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> We will start June 1st , 2026</div></td></tr><tr class="group-header" data-category="esuite"><td colspan="10" style="background:#7c3aed10;border-left:4px solid #7c3aed;padding:10px 14px;font-weight:600;font-size:.85rem;color:#7c3aed"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7c3aed;margin-right:8px"></span>e-Suite <span style="font-weight:400;color:var(--muted);margin-left:8px">1 project</span></td></tr><tr data-category="esuite" data-health="On Hold" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_esuite_0" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">New England Wholesale Florist Supply: E-Suite <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#8b5cf6;background:#f5f3ff">🟣 On Hold</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>—</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr class="notes-row" id="row_esuite_0" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> Eshops for this customer will be implemented after the go live.</div></td></tr><tr class="group-header" data-category="payments"><td colspan="10" style="background:#05966910;border-left:4px solid #059669;padding:10px 14px;font-weight:600;font-size:.85rem;color:#059669"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#059669;margin-right:8px"></span>Payments <span style="font-weight:400;color:var(--muted);margin-left:8px">2 projects</span></td></tr><tr data-category="payments" data-health="At Risk" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_payments_0" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Koronet Payments - Del Tropico/Ameriblooms <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#f59e0b;background:#fffbeb">🟡 At Risk</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>—</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr class="notes-row" id="row_payments_0" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> The customer is facing limitations with POS usage, as payments require manual approval from a Komet office user who is only available Monday to Friday, creating issues for drivers collecting payments outside those hours. Additionally, cancellations cannot be done directly on the POS and must be processed as refunds in Komet, which adds dependency on the office team. They also expected more functionality on the POS device when it is idle, such as access to payment history or navigation options.</div></td></tr><tr data-category="payments" data-health="Not Started" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_payments_1" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Koronet Payments - Natural Flowers, Inc <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#94a3b8;background:#f8fafc">⚪ Not Started</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label">0%</span></div></td>
+        <td>—</td>
+        <td style="color:var(--muted)">—</td>
+        <td>—</td>
+        <td style="color:#64748b;font-weight:600">—</td>
+      </tr><tr class="notes-row" id="row_payments_1" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> The customer can start the second week of april.</div></td></tr><tr class="group-header" data-category="multilocation"><td colspan="10" style="background:#d9770610;border-left:4px solid #d97706;padding:10px 14px;font-weight:600;font-size:.85rem;color:#d97706"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d97706;margin-right:8px"></span>Multilocation <span style="font-weight:400;color:var(--muted);margin-left:8px">2 projects</span></td></tr><tr data-category="multilocation" data-health="Late" data-lead="Manuel Szajowicz" class="has-notes" data-notes-id="row_multilocation_0" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Core Multilocation Upsell - Moonlight Flowers <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td>
+        <td class="col-stage">Completed</td>
+        <td>Manuel Szajowicz</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><span class="progress-label">100%</span></div></td>
+        <td>Jan 13, 2026</td>
+        <td style="color:var(--muted)">Jan 13, 2026</td>
+        <td>Feb 26, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-35d</td>
+      </tr><tr class="notes-row" id="row_multilocation_0" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> Multilocation  training completed 
+We sent a follow up in case they want to check other items but they did not replied.</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> Koronet Payments turned on, waiting to see if they need additional sessions</div></td></tr><tr data-category="multilocation" data-health="Late" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_multilocation_1" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Komet Core Multilocation Upsell - Flower List <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#ef4444;background:#fef2f2">🔴 Late</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><span class="progress-label">100%</span></div></td>
+        <td>Mar 10, 2026</td>
+        <td style="color:var(--muted)">Mar 17, 2026</td>
+        <td>Mar 17, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-16d</td>
+      </tr><tr class="notes-row" id="row_multilocation_1" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> We have not completed the training yet, as the customer has not had availability.</div></td></tr><tr class="group-header" data-category="eshop"><td colspan="10" style="background:#dc262610;border-left:4px solid #dc2626;padding:10px 14px;font-weight:600;font-size:.85rem;color:#dc2626"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#dc2626;margin-right:8px"></span>e-Shop <span style="font-weight:400;color:var(--muted);margin-left:8px">2 projects</span></td></tr><tr data-category="eshop" data-health="On Track" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_eshop_0" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">Flora Fresh Inc: eShops <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Go-Live and Growth</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:96%"></div></div><span class="progress-label">96%</span></div></td>
+        <td>Aug 11, 2025</td>
+        <td style="color:var(--muted)">Mar 31, 2026</td>
+        <td>Jan 15, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-77d</td>
+      </tr><tr class="notes-row" id="row_eshop_0" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> Working on the items raised by the customer during the Miami meeting:
+General barcode for bunches – currently with Product
+Inventory adjustment upload – currently with Support
+Inventory count issue (The quantities shown in the inventory count do not take into account what has been invoiced on the same date the inventory count is performed) – currently with Support</div></td></tr><tr data-category="eshop" data-health="On Track" data-lead="Manuel Szajowicz" class="has-notes" data-notes-id="row_eshop_1" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">eShops  (Add on) <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>Manuel Szajowicz</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:79%"></div></div><span class="progress-label">79%</span></div></td>
+        <td>Mar 18, 2026</td>
+        <td style="color:var(--muted)">Mar 25, 2026</td>
+        <td>Mar 30, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-3d</td>
+      </tr><tr class="notes-row" id="row_eshop_1" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> eshops</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> On track, implementation finishes 30/3</div></td></tr><tr class="group-header" data-category="fedex"><td colspan="10" style="background:#4f46e510;border-left:4px solid #4f46e5;padding:10px 14px;font-weight:600;font-size:.85rem;color:#4f46e5"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#4f46e5;margin-right:8px"></span>FedEx <span style="font-weight:400;color:var(--muted);margin-left:8px">2 projects</span></td></tr><tr data-category="fedex" data-health="On Track" data-lead="Milena Mezamell" class="has-notes" data-notes-id="row_fedex_0" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">FedEx  Transition SOAP API to REST API <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Kickoff and Preparation</td>
+        <td>Milena Mezamell</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><span class="progress-label">100%</span></div></td>
+        <td>Mar 13, 2026</td>
+        <td style="color:var(--muted)">Mar 19, 2026</td>
+        <td>Mar 19, 2026</td>
+        <td style="color:#ef4444;font-weight:600">-14d</td>
+      </tr><tr class="notes-row" id="row_fedex_0" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> FedEx" Transition SOAP API to REST API</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> We completed the configurations and were able to run tests. I’m giving the customer some time to use the integration and review it on their end in case they have any questions.</div></td></tr><tr data-category="fedex" data-health="On Track" data-lead="George Velez" class="has-notes" data-notes-id="row_fedex_1" style="cursor:pointer">
+        <td class="col-name"><div class="project-name">FedEx" Transition SOAP API to REST API <span class="notes-icon">💬</span></div><div class="project-sub"></div></td>
+        <td><span class="badge" style="color:#22c55e;background:#f0fdf4">🟢 On Track</span></td>
+        <td class="col-stage">Training and Activation</td>
+        <td>George Velez</td>
+        <td><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:23%"></div></div><span class="progress-label">23%</span></div></td>
+        <td>Feb 23, 2026</td>
+        <td style="color:var(--muted)">May 15, 2026</td>
+        <td>May 1, 2026</td>
+        <td style="color:#64748b;font-weight:600">29d</td>
+      </tr><tr class="notes-row" id="row_fedex_1" style="display:none"><td colspan="9" style="background:#f8fafc;padding:8px 14px 12px 28px;border-left:3px solid var(--border)"><div style="font-size:.78rem;color:var(--muted);margin-bottom:4px"><strong>Description:</strong> FedEx" Transition SOAP API to REST API , Deadline: June 1, 2026</div><div style="font-size:.78rem;color:var(--ink)"><strong>Latest Update:</strong> 03/09/2026 GV: Working on completing the transition for accounts I already have the Test Keys, to obtain FedEx certification and Production Keys.</div></td></tr></tbody></table></div></div>
+    <div class="alerts-section"><div class="section-title">⚠️ Data Quality Alerts — 6 issues (1 critical, 3 warning, 2 info)</div><div class="alert-card critical"><div class="alert-project">Flora Fresh Inc: eShops</div><div class="alert-lead">Lead: Milena Mezamell</div><div class="alert-msg">• Health = On Track pero Go-Live (2026-01-15) pasó hace 76 días. Actualizar health o fecha.</div></div><div class="alert-card warning"><div class="alert-project">Komet Core Whosaler - Heirloom Home Decor</div><div class="alert-lead">Lead: Milena Mezamell</div><div class="alert-msg">• Stage = Training and Activation pero completion = 3%. Verificar si realmente está en training.</div></div><div class="alert-card warning"><div class="alert-project">Komet Core Multilocation Upsell - Flower List</div><div class="alert-lead">Lead: Milena Mezamell</div><div class="alert-msg">• Stage = Kickoff and Preparation pero completion = 100%. El stage puede necesitar actualización.</div><div class="alert-msg">• Completion = 100% pero Stage = Kickoff and Preparation. Falta marcar como Completed.</div></div><div class="alert-card warning"><div class="alert-project">FedEx  Transition SOAP API to REST API</div><div class="alert-lead">Lead: Milena Mezamell</div><div class="alert-msg">• Stage = Kickoff and Preparation pero completion = 100%. El stage puede necesitar actualización.</div><div class="alert-msg">• Completion = 100% pero Stage = Kickoff and Preparation. Falta marcar como Completed.</div></div></div></div><script>
+function f(){var s=document.getElementById('s'),h=document.getElementById('hf'),cf=document.getElementById('cf'),st=document.getElementById('sf');if(!s)return;var sv=s.value.toLowerCase(),hv=h?h.value.toLowerCase():'',cv=cf?cf.value:'',stv=st?st.value.toLowerCase():'';var vc=new Set();document.querySelectorAll('#tb tr:not(.group-header):not(.notes-row)').forEach(function(r){var t=r.textContent.toLowerCase(),cat=r.getAttribute('data-category')||'',health=r.getAttribute('data-health')||'';var show=(!sv||t.includes(sv))&&(!hv||health.toLowerCase().includes(hv))&&(!cv||cat===cv)&&(!stv||t.includes(stv));r.style.display=show?'':'none';if(!show){var nr=r.nextElementSibling;if(nr&&nr.classList.contains('notes-row'))nr.style.display='none';}if(show)vc.add(cat);});document.querySelectorAll('#tb tr.group-header').forEach(function(r){r.style.display=vc.has(r.getAttribute('data-category')||'')?'':'none';});}
+function toggleNotes(id){var r=document.getElementById(id);if(r)r.style.display=r.style.display==='none'?'table-row':'none';}
+document.getElementById('tb')&&document.getElementById('tb').addEventListener('click',function(e){var tr=e.target.closest('tr.has-notes');if(tr){var id=tr.getAttribute('data-notes-id');if(id)toggleNotes(id);}});
+</script></body></html>
