@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Unosof Implementations – Koronet</title><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f172a;--muted:#64748b;--surface:#fff;--bg:#f1f5f9;--border:#e2e8f0;--accent:#1d4ed8;--accent2:#7c3aed;--radius:12px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+.nav{background:#0f172a;padding:0 40px;display:flex;align-items:center;gap:0;border-bottom:1px solid #1e293b;position:sticky;top:0;z-index:100}
+.nav-brand{font-family:'DM Serif Display',serif;color:#fff;font-size:1rem;padding:12px 20px 12px 0;margin-right:12px;border-right:1px solid #334155}
+.nav a{color:#94a3b8;text-decoration:none;font-size:.78rem;font-weight:500;padding:12px 16px;transition:color .15s,background .15s;border-bottom:2px solid transparent}
+.nav a:hover{color:#e2e8f0;background:#1e293b}
+.nav a.active{color:#fff;border-bottom-color:var(--accent)}
+.nav .badge{display:inline-block;background:#ef4444;color:#fff;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:99px;margin-left:4px;vertical-align:top}
+.nav .lock{font-size:.65rem;margin-left:3px;opacity:.6}
+.header{background:var(--ink);color:#fff;padding:28px 40px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-family:'DM Serif Display',serif;font-size:1.9rem}
+.header p{font-size:.8rem;color:#94a3b8;margin-top:4px}
+.refresh-note{font-size:.75rem;color:#64748b;background:#1e293b;padding:8px 16px;border-radius:8px;text-align:right}
+.refresh-note span{display:block;color:#94a3b8;font-size:.7rem;margin-top:2px}
+.main{padding:32px 40px;max-width:1600px;margin:0 auto}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.kpi-icon{font-size:1.4rem}.kpi-value{font-size:2.2rem;font-weight:600;line-height:1}
+.kpi-label{font-size:.78rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.charts-three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px}
+@media(max-width:1100px){.charts-three{grid-template-columns:1fr}.charts-row{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.card-title{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:20px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bar-label{font-size:.82rem;width:180px;flex-shrink:0}
+.bar-track{flex:1;background:var(--bg);border-radius:99px;height:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px}
+.bar-count{font-size:.8rem;font-weight:600;width:24px;text-align:right;color:var(--muted)}
+.stage-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.stage-name{font-size:.82rem;width:200px;flex-shrink:0}
+.stage-bar-wrap{flex:1;background:var(--bg);border-radius:6px;height:28px;overflow:hidden}
+.stage-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px}
+.stage-count{font-size:.85rem;font-weight:600;width:28px;text-align:right}
+.table-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.table-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.table-header h2{font-family:'DM Serif Display',serif;font-size:1.1rem}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+thead th{background:#f8fafc;padding:10px 14px;text-align:left;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:hover{background:#f8fafc}
+tbody td{padding:12px 14px;vertical-align:middle}
+.col-name{max-width:220px}.project-name{font-weight:500}.project-sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.col-stage{max-width:160px;font-size:.78rem}
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.72rem;font-weight:600;white-space:nowrap}
+.progress-wrap{display:flex;align-items:center;gap:8px}
+.progress-bar{flex:1;min-width:60px;height:6px;background:var(--bg);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+.progress-label{font-size:.75rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-bar input,.filter-bar select{padding:6px 12px;border:1px solid var(--border);border-radius:8px;font-size:.8rem;font-family:'DM Sans',sans-serif;background:#fff;color:var(--ink);outline:none}
+.filter-bar input:focus,.filter-bar select:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(29,78,216,.12)}
+.group-header td{cursor:pointer}
+.group-header:hover td{filter:brightness(.96)}
+.has-notes:hover{background:#f0f4ff !important}
+.notes-icon{font-size:.65rem;margin-left:4px;opacity:.5}
+.notes-row td{border-left-color:var(--accent) !important}
+.alerts-section{margin-top:28px}
+.alert-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:12px;border-left:4px solid}
+.alert-card.critical{border-left-color:#ef4444}
+.alert-card.warning{border-left-color:#f59e0b}
+.alert-card.info{border-left-color:#3b82f6}
+.alert-card .alert-project{font-weight:600;font-size:.88rem;margin-bottom:6px}
+.alert-card .alert-msg{font-size:.8rem;color:var(--muted);margin-bottom:3px}
+.alert-card .alert-lead{font-size:.72rem;color:var(--muted)}
+.alert-card .alert-action{font-size:.78rem;color:var(--accent);font-weight:500;margin-top:6px;font-style:italic}
+#loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#1e293b;border-radius:16px;padding:48px 40px;text-align:center;max-width:380px;width:90%;box-shadow:0 25px 60px rgba(0,0,0,.5)}
+.login-box h1{font-family:'DM Serif Display',serif;color:#fff;font-size:1.5rem;margin-bottom:4px}
+.login-box .sub{color:#64748b;font-size:.78rem;margin-bottom:28px}
+.login-box input{width:100%;padding:12px 16px;border:1px solid #334155;border-radius:8px;background:#0f172a;color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;margin-bottom:12px}
+.login-box button{width:100%;padding:12px;border:none;border-radius:8px;background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:#fff;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer}
+#pwdError{color:#ef4444;font-size:.78rem;margin-top:12px;display:none}
+.donut-wrap{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.donut-legend{display:flex;flex-direction:column;gap:8px}
+.donut-legend-item{display:flex;align-items:center;gap:8px;font-size:.82rem}
+.donut-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.workload-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.workload-name{font-size:.82rem;width:160px;flex-shrink:0;font-weight:500}
+.workload-bar{flex:1;height:24px;border-radius:6px;overflow:hidden;display:flex;background:var(--bg)}
+.workload-count{font-size:.82rem;font-weight:600;width:30px;text-align:right;color:var(--muted)}
+.workload-overloaded{color:#ef4444;font-weight:700}
+.section-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:28px 0 16px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.exec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px}
+@media(max-width:900px){.exec-grid{grid-template-columns:1fr}}
+.exec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.exec-card h3{font-family:'DM Serif Display',serif;font-size:.95rem;margin-bottom:12px}
+.exec-card ul{list-style:none;padding:0}
+.exec-card li{font-size:.82rem;padding:6px 0;border-bottom:1px solid var(--border);color:var(--ink)}
+.exec-card li:last-child{border-bottom:none}</style></head><body><div id="loginScreen"><div class="login-box"><h1>Alba PMO</h1><div class="sub">Enter password to access the dashboards</div><input type="password" id="pwdInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPwd()"><button onclick="checkPwd()">Access Dashboard</button><div id="pwdError">Incorrect password</div></div></div><script>
+(function(){if(localStorage.getItem('alba_auth')==='rosa'){document.getElementById('loginScreen').style.display='none';}})();
+function checkPwd(){if(document.getElementById('pwdInput').value==="rosa"){localStorage.setItem('alba_auth','rosa');document.getElementById('loginScreen').style.display='none';}else{document.getElementById('pwdError').style.display='block';}}
+</script><nav class="nav"><span class="nav-brand">Alba PMO</span><a href="all-projects.html">All Projects</a><a href="komet-core.html">Komet Core</a><a href="network.html">Network</a><a href="unosof.html" class="active">Unosof</a><a href="action.html">Action<span class="lock">🔒</span></a><a href="executive.html">Executive<span class="lock">🔒</span></a></nav><div class="header"><div><h1>Unosof Implementations</h1><p>Koronet · Unosof Projects · Daniel Prada</p></div><div class="refresh-note">Last updated: April 2, 2026 at 09:41 PM<span>Ask Alba to refresh anytime</span></div></div><div class="main">
+    <div style="text-align:center;padding:80px 40px">
+      <div style="font-size:3rem;margin-bottom:16px">🚧</div>
+      <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:12px">Unosof Implementations</h2>
+      <p style="color:var(--muted);font-size:.9rem;max-width:600px;margin:0 auto 24px">
+        This dashboard will track Daniel Prada's Unosof implementation projects.<br>
+        These projects are managed outside Salesforce and will be integrated here soon.
+      </p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:700px;margin:0 auto;text-align:left">
+        <div style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px">📋 Planned Tracking</div>
+        <ul style="list-style:none;padding:0;font-size:.85rem;color:var(--ink)">
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">• Active Unosof implementation projects</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">• Project health and completion status</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">• Go-live dates and milestones</li>
+          <li style="padding:8px 0;border-bottom:1px solid var(--border)">• Client details and project scope</li>
+          <li style="padding:8px 0">• Integration with overall PMO reporting</li>
+        </ul>
+      </div>
+      <p style="color:var(--muted);font-size:.78rem;margin-top:24px">Owner: Daniel Prada · Data source: TBD</p>
+    </div></div><script>
+function f(){var s=document.getElementById('s'),h=document.getElementById('hf'),cf=document.getElementById('cf'),st=document.getElementById('sf');if(!s)return;var sv=s.value.toLowerCase(),hv=h?h.value.toLowerCase():'',cv=cf?cf.value:'',stv=st?st.value.toLowerCase():'';var vc=new Set();document.querySelectorAll('#tb tr:not(.group-header):not(.notes-row)').forEach(function(r){var t=r.textContent.toLowerCase(),cat=r.getAttribute('data-category')||'',health=r.getAttribute('data-health')||'';var show=(!sv||t.includes(sv))&&(!hv||health.toLowerCase().includes(hv))&&(!cv||cat===cv)&&(!stv||t.includes(stv));r.style.display=show?'':'none';if(!show){var nr=r.nextElementSibling;if(nr&&nr.classList.contains('notes-row'))nr.style.display='none';}if(show)vc.add(cat);});document.querySelectorAll('#tb tr.group-header').forEach(function(r){r.style.display=vc.has(r.getAttribute('data-category')||'')?'':'none';});}
+function toggleNotes(id){var r=document.getElementById(id);if(r)r.style.display=r.style.display==='none'?'table-row':'none';}
+document.getElementById('tb')&&document.getElementById('tb').addEventListener('click',function(e){var tr=e.target.closest('tr.has-notes');if(tr){var id=tr.getAttribute('data-notes-id');if(id)toggleNotes(id);}});
+</script></body></html>
