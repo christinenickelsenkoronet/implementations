@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FedEx Integration Plan — Abr-May 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f7; color: #1d1d1f; padding: 32px; }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { color: #86868b; font-size: 14px; margin-bottom: 32px; }
+  .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; }
+  .card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .card .num { font-size: 36px; font-weight: 700; }
+  .card .label { font-size: 13px; color: #86868b; margin-top: 4px; }
+  .card.green .num { color: #34c759; }
+  .card.blue .num { color: #007aff; }
+  .card.orange .num { color: #ff9500; }
+  .card.gray .num { color: #86868b; }
+  .sprint { background: #fff; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .sprint h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .sprint .dates { font-size: 13px; color: #86868b; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; table-layout: fixed; }
+  col.c-company { width: 22%; }
+  col.c-id { width: 8%; }
+  col.c-owner { width: 16%; }
+  col.c-action { width: 30%; }
+  col.c-start { width: 10%; }
+  col.c-status { width: 14%; }
+  th { text-align: left; padding: 8px 10px; background: #f5f5f7; color: #86868b; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .owner { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .owner.joint { background: #f3e5f5; color: #6a1b9a; }
+  .owner.catleya { background: #fce4ec; color: #c62828; }
+  .owner.fernando { background: #e6f4ea; color: #1e8e3e; }
+  .owner.george { background: #e8f0fe; color: #1a73e8; }
+  .owner.todos { background: #fff3e0; color: #e65100; }
+  .status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .status.ip { background: #e8f0fe; color: #1a73e8; }
+  .status.ns { background: #fef3e0; color: #e8710a; }
+  .status.done { background: #e6f4ea; color: #1e8e3e; }
+  .excluded { margin-top: 36px; }
+  .excluded h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #86868b; }
+  .excluded table { opacity: 0.6; }
+  .risks { background: #fff; border-radius: 14px; padding: 24px; margin-top: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .risks h2 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .risks ul { padding-left: 20px; font-size: 14px; line-height: 1.8; }
+  .footer { text-align: center; color: #86868b; font-size: 12px; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<h1>FedEx Integration Plan</h1>
+<p class="subtitle">14 abril — 15 mayo 2026 | Catleya + Fernando (ejecucion), George (coordinacion/soporte) | 23 dias habiles</p>
+
+<div class="summary">
+  <div class="card green"><div class="num">2</div><div class="label">Completed</div></div>
+  <div class="card blue"><div class="num">6</div><div class="label">In Progress</div></div>
+  <div class="card orange"><div class="num">17</div><div class="label">Not Started</div></div>
+  <div class="card gray"><div class="num">6</div><div class="label">Excluidas</div></div>
+</div>
+
+<!-- SPRINT 1 -->
+<div class="sprint">
+  <h2>Sprint 1 — Cerrar In Progress (en conjunto)</h2>
+  <div class="dates">14 — 25 abril (semanas 1-2) — 3 cuentas</div>
+  <table>
+    <colgroup><col class="c-company"><col class="c-id"><col class="c-owner"><col class="c-action"><col class="c-start"><col class="c-status"></colgroup>
+    <tr><th>Company</th><th>ID</th><th>Owner</th><th>Accion</th><th>Start Date</th><th>Status</th></tr>
+    <tr><td>Royal Flowers Inc.</td><td>22143</td><td><span class="owner joint">Catleya + Fernando</span></td><td>Enviar certification email</td><td>14 abr</td><td><span class="status ip">In Progress</span></td></tr>
+    <tr><td>Rosaprima International</td><td>12941</td><td><span class="owner joint">Catleya + Fernando</span></td><td>Completar certificacion</td><td>14 abr</td><td><span class="status ip">In Progress</span></td></tr>
+    <tr><td>Continental Floral LLC</td><td>41934</td><td><span class="owner joint">Catleya + Fernando</span></td><td>Completar certificacion</td><td>14 abr</td><td><span class="status ip">In Progress</span></td></tr>
+  </table>
+</div>
+
+<!-- SPRINT 2 -->
+<div class="sprint">
+  <h2>Sprint 2 — Cuentas individuales + certificaciones</h2>
+  <div class="dates">28 abril — 9 mayo (semanas 3-4) — 20 cuentas</div>
+  <table>
+    <colgroup><col class="c-company"><col class="c-id"><col class="c-owner"><col class="c-action"><col class="c-start"><col class="c-status"></colgroup>
+    <tr><th>Company</th><th>ID</th><th>Owner</th><th>Accion</th><th>Start Date</th><th>Status</th></tr>
+    <tr><td>Jet Fresh Flower Dist.</td><td>18322</td><td><span class="owner catleya">Catleya</span></td><td>Completar certificacion</td><td>28 abr</td><td><span class="status ip">In Progress</span></td></tr>
+    <tr><td>Fresca Farms</td><td>103112</td><td><span class="owner catleya">Catleya</span></td><td>Obtener production keys, certificar</td><td>28 abr</td><td><span class="status ip">In Progress</span></td></tr>
+    <tr><td>Sole Farms</td><td>25489</td><td><span class="owner catleya">Catleya</span></td><td>Ya tiene credenciales FedEx</td><td>30 abr</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Multiflora Corp</td><td>377256</td><td><span class="owner catleya">Catleya</span></td><td>Quiere reunion (mismo contacto Premium)</td><td>2 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Premium Flowers</td><td>378242</td><td><span class="owner catleya">Catleya</span></td><td>Mismo contacto que Multiflora</td><td>2 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Miraflor LLC</td><td>649745</td><td><span class="owner catleya">Catleya</span></td><td>Pendiente credenciales, follow-up</td><td>5 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Sunburst Farms</td><td>22218</td><td><span class="owner catleya">Catleya</span></td><td>Follow-up + setup</td><td>7 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Protean Flowers</td><td>467802</td><td><span class="owner catleya">Catleya</span></td><td>Follow-up + setup</td><td>7 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Golden Flowers</td><td>77300</td><td><span class="owner catleya">Catleya</span></td><td>Follow-up + setup</td><td>9 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Albin Hagstrom</td><td>521854</td><td><span class="owner catleya">Catleya</span></td><td>Follow-up + setup</td><td>9 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Allure Farms</td><td>73730</td><td><span class="owner fernando">Fernando</span></td><td>Obtener production keys, certificar</td><td>28 abr</td><td><span class="status ip">In Progress</span></td></tr>
+    <tr><td>Zion Flowers INC</td><td>533116</td><td><span class="owner fernando">Fernando</span></td><td>Tiene test keys, quiere reunion</td><td>28 abr</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>EQR USA</td><td>130337</td><td><span class="owner fernando">Fernando</span></td><td>Re-enviar / follow-up</td><td>30 abr</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Galleria Farms</td><td>343614</td><td><span class="owner fernando">Fernando</span></td><td>Re-enviar / follow-up</td><td>30 abr</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Mayesh Wholesale</td><td>103078</td><td><span class="owner fernando">Fernando</span></td><td>Follow-up</td><td>2 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Melody Farms LLC</td><td>498769</td><td><span class="owner fernando">Fernando</span></td><td>Enviar email inicial</td><td>2 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Wafex USA</td><td>54343</td><td><span class="owner fernando">Fernando</span></td><td>Follow-up + setup</td><td>5 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Dynamic Farms</td><td>378264</td><td><span class="owner fernando">Fernando</span></td><td>Follow-up + setup</td><td>5 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Choice Farms</td><td>341499</td><td><span class="owner fernando">Fernando</span></td><td>Follow-up + setup</td><td>7 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Stellar Farms</td><td>200503</td><td><span class="owner fernando">Fernando</span></td><td>Follow-up + setup</td><td>9 may</td><td><span class="status ns">Not Started</span></td></tr>
+    <tr><td>Farm Fresh Exports</td><td>189685</td><td><span class="owner fernando">Fernando</span></td><td>Sin email contacto — escalar con CSM</td><td>9 may</td><td><span class="status ns">Not Started</span></td></tr>
+  </table>
+</div>
+
+<!-- SPRINT 3 -->
+<div class="sprint">
+  <h2>Sprint 3 — Cierre y buffer</h2>
+  <div class="dates">12 — 15 mayo (semana 5) — cierre</div>
+  <table>
+    <colgroup><col class="c-company"><col class="c-id"><col class="c-owner"><col class="c-action"><col class="c-start"><col class="c-status"></colgroup>
+    <tr><th>Company</th><th>ID</th><th>Owner</th><th>Accion</th><th>Start Date</th><th>Status</th></tr>
+    <tr><td>—</td><td>—</td><td><span class="owner todos">Todos</span></td><td>Completar certificaciones pendientes</td><td>12 may</td><td><span class="status ns">Pendiente</span></td></tr>
+    <tr><td>—</td><td>—</td><td><span class="owner todos">Todos</span></td><td>Enviar ultimos certification emails</td><td>13 may</td><td><span class="status ns">Pendiente</span></td></tr>
+    <tr><td>—</td><td>—</td><td><span class="owner george">George</span></td><td>Escalar casos sin respuesta al CSM</td><td>14 may</td><td><span class="status ns">Pendiente</span></td></tr>
+    <tr><td>—</td><td>—</td><td><span class="owner george">George</span></td><td>Cerrar tracking y reportar status final</td><td>15 may</td><td><span class="status ns">Pendiente</span></td></tr>
+  </table>
+</div>
+
+<!-- EXCLUIDAS -->
+<div class="excluded">
+  <h2>Excluidas del plan (no requieren trabajo)</h2>
+  <table>
+    <colgroup><col class="c-company"><col class="c-id"><col style="width:70%"></colgroup>
+    <tr><th>Company</th><th>ID</th><th>Razon</th></tr>
+    <tr><td>Frank Adams Wholesale</td><td>543610</td><td>Already set — not shipping</td></tr>
+    <tr><td>Ensign Wholesale</td><td>635064</td><td>Already set — not shipping</td></tr>
+    <tr><td>Continental Floral OR</td><td>471458</td><td>Already set — not shipping</td></tr>
+    <tr><td>Premium Greens Australia</td><td>144369</td><td>Already set — not shipping</td></tr>
+    <tr><td>Magnolia Wholesale</td><td>588171</td><td>Already set — not shipping</td></tr>
+    <tr><td>South Florals Imports</td><td>454705</td><td>Ya no usa FedEx integration</td></tr>
+  </table>
+</div>
+
+<!-- RIESGOS -->
+<div class="risks">
+  <h2>Riesgos</h2>
+  <ul>
+    <li><strong>~10 cuentas sin respuesta</strong> — depende del cliente, no del equipo</li>
+    <li><strong>Dependencia de credenciales</strong> — clientes deben compartir acceso FedEx</li>
+    <li><strong>Farm Fresh Exports</strong> — sin email de contacto, requiere escalacion CSM</li>
+    <li><strong>Equipo:</strong> Catleya (10 cuentas), Fernando (11 cuentas), George (coordinacion/soporte)</li>
+  </ul>
+</div>
+
+<div class="footer">Generado por Alba — 14 abril 2026</div>
+
+</body>
+</html>
