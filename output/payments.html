@@ -12,8 +12,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .header p{font-size:.8rem;color:#94a3b8;margin-top:4px}
 .refresh-note{font-size:.75rem;color:#64748b;background:#1e293b;padding:8px 16px;border-radius:8px;text-align:right}
 .refresh-note span{display:block;color:#94a3b8;font-size:.7rem;margin-top:2px}
-.main{padding:32px 40px;max-width:1800px;margin:0 auto}
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:28px}
+.main{padding:32px 40px;max-width:1600px;margin:0 auto}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
 .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
 .kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
 .kpi-value{font-size:2.2rem;font-weight:600;line-height:1}
@@ -25,34 +25,41 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-
 .table-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .table-header h2{font-family:'DM Serif Display',serif;font-size:1.1rem}
 .table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:.78rem}
-thead th{background:#f8fafc;padding:8px 10px;text-align:left;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+thead th{background:#f8fafc;padding:10px 14px;text-align:left;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
 tbody tr{border-bottom:1px solid var(--border)}
 tbody tr:hover{background:#f8fafc}
-tbody td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
-.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.68rem;font-weight:600;white-space:nowrap}
+tbody td{padding:12px 14px;vertical-align:middle}
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.72rem;font-weight:600;white-space:nowrap}
 .badge-green{background:#ecfdf5;color:#059669}
 .badge-red{background:#fef2f2;color:#dc2626}
 .badge-yellow{background:#fffbeb;color:#d97706}
 .badge-purple{background:#f5f3ff;color:#7c3aed}
 .badge-gray{background:#f1f5f9;color:#64748b}
-.badge-imp{background:#e0e7ff;color:#3730a3}
-.progress-wrap{display:flex;align-items:center;gap:6px}
-.progress-bar{flex:1;min-width:40px;height:6px;background:var(--bg);border-radius:99px;overflow:hidden}
+.badge-esuite{background:#fdf4ff;color:#a21caf}
+.progress-wrap{display:flex;align-items:center;gap:8px}
+.progress-bar{flex:1;min-width:60px;height:6px;background:var(--bg);border-radius:99px;overflow:hidden}
 .progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.progress-label{font-size:.72rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.progress-label{font-size:.75rem;font-weight:600;color:var(--muted);white-space:nowrap}
 .alert-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:12px;border-left:4px solid}
 .alert-card.warning{border-left-color:#f59e0b}
 .alert-card.info{border-left-color:#3b82f6}
 .alert-card .alert-project{font-weight:600;font-size:.88rem;margin-bottom:4px}
 .alert-card .alert-msg{font-size:.8rem;color:var(--muted)}
 .data-note{font-size:.7rem;color:var(--muted);background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 14px;margin-bottom:20px}
-.r{text-align:right}
-.m{color:var(--muted)}
-.gl-col{background:#f0fdf4}
-.kp-header{background:#f5f3ff !important;color:#7c3aed !important}
-.sales-header{background:#eff6ff !important;color:#1d4ed8 !important}
-.proc-header{background:#ecfdf5 !important;color:#059669 !important}
+.kp-h{background:#f0fdf4;color:#059669;font-weight:600}
+.s-h{background:#eff6ff;color:#1d4ed8;font-weight:600}
+.p-h{background:#fdf4ff;color:#a21caf;font-weight:600}
+.r{color:#ef4444}.m{color:var(--muted)}.gl-col{font-weight:600}
+.ora-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:20px}
+.ora-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;position:relative;overflow:hidden}
+.ora-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1d4ed8,#7c3aed)}
+.ora-card h3{font-size:.9rem;font-weight:700;margin-bottom:12px;padding-right:90px}
+.ora-status{position:absolute;top:12px;right:16px}
+.ora-row{display:flex;justify-content:space-between;font-size:.78rem;padding:5px 0;border-bottom:1px solid #f1f5f9}
+.ora-row:last-child{border-bottom:none}
+.ora-row .label{color:var(--muted)}
+.ora-row .value{font-weight:600}
 #loginScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#0f172a;z-index:9999;display:flex;align-items:center;justify-content:center}
 .login-box{background:#1e293b;border-radius:16px;padding:48px 40px;text-align:center;max-width:380px;width:90%;box-shadow:0 25px 60px rgba(0,0,0,.5)}
 .login-box h1{font-family:'DM Serif Display',serif;color:#fff;font-size:1.5rem;margin-bottom:4px}
@@ -65,250 +72,204 @@ tbody td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 <div id="loginScreen"><div class="login-box"><h1>Alba PMO</h1><div class="sub">Enter password to access Payments</div><input type="password" id="pwdInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPwd()"><button onclick="checkPwd()">Access Dashboard</button><div id="pwdError">Incorrect password</div></div></div>
 <script>(function(){if(localStorage.getItem('alba_auth')==='rosa'){document.getElementById('loginScreen').style.display='none';}})();function checkPwd(){if(document.getElementById('pwdInput').value==="rosa"){localStorage.setItem('alba_auth','rosa');document.getElementById('loginScreen').style.display='none';}else{document.getElementById('pwdError').style.display='block';}}</script>
 <nav class="nav"><span class="nav-brand">Alba PMO</span><a href="executive.html">Executive<span class="lock">&#128274;</span></a><a href="all-projects.html">All Projects</a><a href="komet-core.html">Komet Core</a><a href="network.html">Network</a><a href="unosof.html">Unosof</a><a href="postgolive.html">Post Go-Live</a><a href="time-to-value.html">Time to Value</a><a href="esuite-accounts.html">eSuite Accounts</a><a href="payments.html" class="active">Payments</a><a href="action.html">Action<span class="lock">&#128274;</span></a></nav>
-<div class="header"><div><h1>Koronet Payments</h1><p>Koronet &middot; KPayments Adoption &amp; Pipeline &middot; Generated by Antonia</p></div><div class="refresh-note"><span>Last updated</span>: April 16, 2026<span>Data snapshot: ~April 9, 2026 &middot; Fuente: Snowflake</span></div></div>
+<div class="header"><div><h1>Koronet Payments</h1><p>Koronet &middot; KPayments Adoption &amp; Pipeline &middot; Generated by Antonia</p></div><div class="refresh-note"><span>Last updated</span>: April 16, 2026<span>Data snapshot: ~April 9, 2026</span></div></div>
 
 <div class="main">
 
-<div class="data-note">Los numeros reflejan datos de aproximadamente 1 semana atras (~9 abril 2026). Fuente: Snowflake. Universal Flowers Farm y San Jose Floral fueron live el 15 abril.</div>
+<div class="data-note">Numbers from the Excel reflect data from approximately 1 week ago (~April 9, 2026). Snowflake data in Post Go-Live is more recent.</div>
 
 <!-- KPI CARDS -->
 <div class="kpi-grid">
-<div class="kpi-card"><div class="kpi-value" style="color:var(--accent)">$733K</div><div class="kpi-label">Total KPay Volumen</div><div class="kpi-sub">Last 30 days (post go-live)</div></div>
-<div class="kpi-card"><div class="kpi-value" style="color:#059669">42%</div><div class="kpi-label">Avg Pay Usage</div><div class="kpi-sub">KPay / Total Sales</div></div>
-<div class="kpi-card"><div class="kpi-value" style="color:#1d4ed8">10</div><div class="kpi-label">Accounts Live</div><div class="kpi-sub">2 high, 3 growing, 5 early/zero</div></div>
-<div class="kpi-card"><div class="kpi-value" style="color:#d97706">3</div><div class="kpi-label">In Training</div><div class="kpi-sub">Est. $118K/mo pipeline</div></div>
+<div class="kpi-card"><div class="kpi-value" style="color:var(--accent)">$733K</div><div class="kpi-label">Total KPay Volume</div><div class="kpi-sub">Last 30 days (post go-live accounts)</div></div>
+<div class="kpi-card"><div class="kpi-value" style="color:#059669">42%</div><div class="kpi-label">Avg Payments Usage</div><div class="kpi-sub">KPay / Total Sales (post go-live)</div></div>
+<div class="kpi-card"><div class="kpi-value" style="color:#1d4ed8">12</div><div class="kpi-label">Accounts Live</div><div class="kpi-sub">Komet Core + eSuite with payments enabled</div></div>
+<div class="kpi-card"><div class="kpi-value" style="color:#d97706">3</div><div class="kpi-label">In Training Pipeline</div><div class="kpi-sub">Nova Packing, JFS, Heirloom</div></div>
 <div class="kpi-card"><div class="kpi-value" style="color:#ef4444">4</div><div class="kpi-label">Adhoc / At Risk</div><div class="kpi-sub">Interflor, Del Tropico, Tessa, Natural Flowers</div></div>
 </div>
 
 <!-- POST GO-LIVE: PAYMENTS PERFORMANCE -->
-<div class="section-title">Post Go-Live &mdash; KPayments Performance</div>
+<div class="section-title">Post Go-Live &mdash; Payments Performance</div>
 
 <div class="table-card">
-<div class="table-header"><h2>KPayments por Cuenta (Live)</h2><div style="font-size:.72rem;color:var(--muted)">Cuentas live en 2026 &middot; Columnas KPay relativas a Go-Live month &middot; Fuente: Snowflake (~9 Abr)</div></div>
+<div class="table-header"><h2>KPayments by Account (Live &mdash; Komet Core)</h2><div style="font-size:.72rem;color:var(--muted)">Accounts live in 2026 &middot; Source: Go Live Core Excel (~April 9) + Snowflake</div></div>
 <div class="table-wrap"><table>
 <thead><tr>
-<th rowspan="2">Account</th><th rowspan="2">Type</th><th rowspan="2">Go-Live</th>
-<th colspan="4" class="kp-header" style="text-align:center;border-bottom:none">KPayments</th>
-<th colspan="3" class="sales-header" style="text-align:center;border-bottom:none">Sales (Last 30d)</th>
-<th colspan="3" class="proc-header" style="text-align:center;border-bottom:none">Procurement (Last 30d)</th>
-<th rowspan="2" style="text-align:center">Pay Usage</th>
-<th rowspan="2">Status</th>
-</tr><tr>
-<th class="kp-header" style="text-align:right">GL Month</th>
-<th class="kp-header" style="text-align:right">+1 GL</th>
-<th class="kp-header" style="text-align:right">+2 GL</th>
-<th class="kp-header" style="text-align:right">+3 GL</th>
-<th class="sales-header" style="text-align:right">Total</th>
-<th class="sales-header" style="text-align:right">Online</th>
-<th class="sales-header" style="text-align:right">Offline</th>
-<th class="proc-header" style="text-align:right">Total</th>
-<th class="proc-header" style="text-align:right">Online</th>
-<th class="proc-header" style="text-align:right">Offline</th>
+<th>Account</th><th>Type</th><th>Go-Live</th><th>Days Live</th>
+<th style="text-align:right">KPay March</th>
+<th style="text-align:right">KPay April</th>
+<th style="text-align:right">Last 30d KPay</th>
+<th style="text-align:right">Last 30d Sales</th>
+<th style="text-align:center">Pay Usage</th>
+<th>Status</th>
 </tr></thead>
 <tbody>
-
-<!-- Floral Fresh: GL Jan 15 → GL=Jan, +1=Feb, +2=Mar, +3=Apr -->
 <tr style="background:#f0fdf4">
 <td style="font-weight:600">Floral Fresh</td>
 <td><span class="badge badge-purple">Wholesale</span></td>
-<td>Jan 15</td>
-<td class="r" style="font-size:.7rem;color:var(--muted)" title="Jan (GL Month)">$644,000</td>
-<td class="r" style="font-size:.7rem" title="Feb (+1 GL)">&mdash;</td>
-<td class="r" style="font-weight:600" title="Mar (+2 GL)">$492,147</td>
-<td class="r gl-col" style="font-weight:700" title="Apr (+3 GL)">$219,999</td>
-<td class="r" style="font-weight:600">$928,000</td>
-<td class="r">$9,500</td>
-<td class="r">$918,500</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
+<td>Jan 15</td><td style="text-align:center">91</td>
+<td style="text-align:right;font-weight:600">$492,147</td>
+<td style="text-align:right;font-weight:600;color:#059669">$219,999</td>
+<td style="text-align:right;font-weight:700">$543,529</td>
+<td style="text-align:right">$928,000</td>
 <td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:59%"></div></div><span class="progress-label">59%</span></div></td>
-<td><span class="badge badge-green">High</span></td>
+<td><span class="badge badge-green">High Adoption</span></td>
 </tr>
-
-<!-- New England: GL Jan 15 → GL=Jan, +1=Feb, +2=Mar, +3=Apr -->
 <tr style="background:#f0fdf4">
 <td style="font-weight:600">New England Wholesale</td>
 <td><span class="badge badge-purple">Wholesale</span></td>
-<td>Jan 15</td>
-<td class="r" style="font-size:.7rem;color:var(--muted)" title="Jan">$67,105</td>
-<td class="r" style="font-size:.7rem" title="Feb">&mdash;</td>
-<td class="r" style="font-weight:600" title="Mar">$56,582</td>
-<td class="r gl-col" style="font-weight:700" title="Apr">$12,732</td>
-<td class="r" style="font-weight:600">$57,708</td>
-<td class="r">$0</td>
-<td class="r">$57,708</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
+<td>Jan 15</td><td style="text-align:center">91</td>
+<td style="text-align:right;font-weight:600">$56,582</td>
+<td style="text-align:right;font-weight:600;color:#059669">$12,732</td>
+<td style="text-align:right;font-weight:700">$64,371</td>
+<td style="text-align:right">$57,708</td>
 <td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><span class="progress-label">100%</span></div></td>
-<td><span class="badge badge-green">Full</span></td>
+<td><span class="badge badge-green">Full Adoption</span></td>
 </tr>
-
-<!-- Adesse: GL Jan 27 → GL=Jan, +1=Feb, +2=Mar, +3=Apr -->
-<tr>
-<td style="font-weight:600">Adesse LLC</td>
-<td><span class="badge badge-imp">Importer</span></td>
-<td>Jan 27</td>
-<td class="r" style="font-size:.7rem;color:var(--muted)" title="Jan">$950</td>
-<td class="r" style="font-size:.7rem" title="Feb">&mdash;</td>
-<td class="r" title="Mar">$2,555</td>
-<td class="r gl-col" title="Apr">$2,119</td>
-<td class="r">$12,337</td>
-<td class="r">$2,900</td>
-<td class="r">$9,437</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:27%"></div></div><span class="progress-label">27%</span></div></td>
-<td><span class="badge badge-yellow">Growing</span></td>
-</tr>
-
-<!-- VERA: GL Jan 16 → GL=Jan, +1=Feb, +2=Mar, +3=Apr -->
-<tr>
-<td style="font-weight:600">VERA</td>
-<td><span class="badge badge-imp">Importer</span></td>
-<td>Jan 16</td>
-<td class="r" style="font-size:.7rem;color:var(--muted)" title="Jan">$0</td>
-<td class="r" style="font-size:.7rem" title="Feb">&mdash;</td>
-<td class="r" title="Mar">$2,707</td>
-<td class="r gl-col" title="Apr">$1,402</td>
-<td class="r">$56,485</td>
-<td class="r">$8,560</td>
-<td class="r">$47,925</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td class="r">&mdash;</td>
-<td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:6%"></div></div><span class="progress-label">6%</span></div></td>
-<td><span class="badge badge-red">Low</span></td>
-</tr>
-
-<!-- IKEBANA: GL Feb 23 → GL=Feb, +1=Mar, +2=Apr -->
-<tr>
-<td style="font-weight:600">Universal Flower Svc (IKEBANA)</td>
-<td><span class="badge badge-imp">Importer</span></td>
-<td>Feb 23</td>
-<td class="r m" title="Feb">$0</td>
-<td class="r m" title="Mar">$0</td>
-<td class="r m gl-col" title="Apr">$0</td>
-<td class="r m">&mdash;</td>
-<td class="r m">$0</td>
-<td class="r m">$0</td>
-<td class="r m">$0</td>
-<td class="r m">$0</td>
-<td class="r m">$0</td>
-<td class="r m">$0</td>
-<td style="text-align:center"><span class="progress-label" style="color:#ef4444">0%</span></td>
-<td><span class="badge badge-red">Not Using</span></td>
-</tr>
-
-<!-- Zeidler: GL Mar 20 → GL=Mar, +1=Apr -->
 <tr>
 <td style="font-weight:600">Zeidler</td>
 <td><span class="badge badge-purple">Wholesale</span></td>
-<td>Mar 20</td>
-<td class="r" style="font-weight:600" title="Mar">$32,712</td>
-<td class="r gl-col" style="font-weight:700" title="Apr">$32,933</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r" style="font-weight:600">$184,423</td>
-<td class="r">$13,698</td>
-<td class="r">$170,725</td>
-<td class="r">$48,556</td>
-<td class="r">$0</td>
-<td class="r">$48,556</td>
+<td>Mar 20</td><td style="text-align:center">27</td>
+<td style="text-align:right">$32,712</td>
+<td style="text-align:right;color:#059669">$32,933</td>
+<td style="text-align:right;font-weight:600">$61,067</td>
+<td style="text-align:right">$184,423</td>
 <td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:33%"></div></div><span class="progress-label">33%</span></div></td>
 <td><span class="badge badge-yellow">Growing</span></td>
 </tr>
-
-<!-- Riverside: GL Apr 7 → GL=Apr -->
+<tr>
+<td style="font-weight:600">Adesse LLC</td>
+<td><span class="badge" style="background:#e0e7ff;color:#3730a3">Importer</span></td>
+<td>Jan 27</td><td style="text-align:center">79</td>
+<td style="text-align:right">$2,555</td>
+<td style="text-align:right">$2,119</td>
+<td style="text-align:right">$3,342</td>
+<td style="text-align:right">$12,337</td>
+<td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:27%"></div></div><span class="progress-label">27%</span></div></td>
+<td><span class="badge badge-yellow">Growing</span></td>
+</tr>
+<tr>
+<td style="font-weight:600">VERA</td>
+<td><span class="badge" style="background:#e0e7ff;color:#3730a3">Importer</span></td>
+<td>Jan 16</td><td style="text-align:center">90</td>
+<td style="text-align:right">$2,707</td>
+<td style="text-align:right">$1,402</td>
+<td style="text-align:right">$3,343</td>
+<td style="text-align:right">$56,485</td>
+<td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:6%"></div></div><span class="progress-label">6%</span></div></td>
+<td><span class="badge badge-red">Low</span></td>
+</tr>
+<tr>
+<td style="font-weight:600">Universal Flower Service (IKEBANA)</td>
+<td><span class="badge" style="background:#e0e7ff;color:#3730a3">Importer</span></td>
+<td>Feb 23</td><td style="text-align:center">52</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div><span class="progress-label" style="color:#ef4444">0%</span></div></td>
+<td><span class="badge badge-red">Not Using</span></td>
+</tr>
 <tr>
 <td style="font-weight:600">Riverside</td>
 <td><span class="badge badge-purple">Wholesale</span></td>
-<td>Apr 7</td>
-<td class="r gl-col m" title="Apr">$0</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r">$36,052</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r">$27,300</td>
-<td class="r">$0</td>
-<td class="r">$27,300</td>
+<td>Apr 7</td><td style="text-align:center">9</td>
+<td style="text-align:right;color:var(--muted)">&mdash;</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right">$36,052</td>
 <td style="text-align:center"><span class="badge badge-gray">Too Early</span></td>
 <td><span class="badge badge-gray">New</span></td>
 </tr>
-
-<!-- FGS MIA: GL Apr 10 → GL=Apr -->
 <tr>
 <td style="font-weight:600">FGS MIA</td>
-<td><span class="badge badge-imp">Importer</span></td>
-<td>Apr 10</td>
-<td class="r gl-col m" title="Apr">$0</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">$64</td>
-<td class="r">$64</td>
-<td class="r m">$0</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
+<td><span class="badge" style="background:#e0e7ff;color:#3730a3">Importer</span></td>
+<td>Apr 10</td><td style="text-align:center">6</td>
+<td style="text-align:right;color:var(--muted)">&mdash;</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$64</td>
 <td style="text-align:center"><span class="badge badge-gray">Too Early</span></td>
 <td><span class="badge badge-gray">New</span></td>
 </tr>
-
-<!-- Universal Flowers Farm: GL Apr 15 → GL=Apr -->
-<tr style="background:#fffbeb">
-<td style="font-weight:600">Universal Flowers Farm</td>
-<td><span class="badge badge-imp">Importer</span></td>
-<td>Apr 15 <span style="font-size:.6rem;color:#d97706;font-weight:700">AYER</span></td>
-<td class="r gl-col m" title="Apr">$0</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td style="text-align:center"><span class="badge badge-gray">Day 1</span></td>
-<td><span class="badge badge-yellow">Just Live</span></td>
-</tr>
-
-<!-- San Jose: GL Apr 15 → GL=Apr -->
-<tr style="background:#fffbeb">
+<tr>
 <td style="font-weight:600">San Jose Floral</td>
 <td><span class="badge badge-purple">Wholesale</span></td>
-<td>Apr 15 <span style="font-size:.6rem;color:#d97706;font-weight:700">AYER</span></td>
-<td class="r gl-col m" title="Apr">$0</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td class="r m">&mdash;</td>
-<td style="text-align:center"><span class="badge badge-gray">Day 1</span></td>
-<td><span class="badge badge-yellow">Just Live</span></td>
+<td>Apr 17</td><td style="text-align:center">0</td>
+<td style="text-align:right;color:var(--muted)">&mdash;</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:center"><span class="badge badge-gray">Too Early</span></td>
+<td><span class="badge badge-gray">Just Launched</span></td>
 </tr>
-
+<tr>
+<td style="font-weight:600">Universal Flowers Farm</td>
+<td><span class="badge" style="background:#e0e7ff;color:#3730a3">Importer</span></td>
+<td>Apr 17</td><td style="text-align:center">0</td>
+<td style="text-align:right;color:var(--muted)">&mdash;</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:right;color:var(--muted)">$0</td>
+<td style="text-align:center"><span class="badge badge-gray">Too Early</span></td>
+<td><span class="badge badge-gray">Just Launched</span></td>
+</tr>
 </tbody>
 </table></div>
-<div style="padding:12px 24px;font-size:.68rem;color:var(--muted);border-top:1px solid var(--border)">
-<strong>Leyenda columnas KPay:</strong> GL Month = mes del go-live, +1 GL = 1 mes despues, +2 GL = 2 meses despues, etc. &mdash; indica dato no disponible en snapshot. Procurement de Zeidler y Riverside via Snowflake; resto pendiente de pull.
 </div>
+
+<!-- eSUITE WITH PAYMENTS ENABLED -->
+<div class="section-title">eSuite with Payments Enabled</div>
+
+<div class="table-card">
+<div class="table-header"><h2>eSuite Accounts &mdash; KPay Status</h2><div style="font-size:.72rem;color:var(--muted)">eSuite growers with payments eligibility &middot; Source: Snowflake</div></div>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Account</th><th>Type</th><th>Lead</th><th>Go-Live</th>
+<th style="text-align:center">Completion</th>
+<th>KPay Status</th>
+<th>Merchant Created</th>
+<th>First Tx</th>
+<th style="text-align:right">GL Mo Sales</th>
+<th style="text-align:right">+1 GL Sales</th>
+<th style="text-align:right">+2 GL Sales</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="font-weight:600">Pacifica Produce Farms LLC</td>
+<td><span class="badge badge-esuite">eSuite Grower</span></td>
+<td>Daniel Prada</td>
+<td>Feb 13</td>
+<td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:97%"></div></div><span class="progress-label">97%</span></div></td>
+<td><span class="badge badge-yellow">Eligible &mdash; Onboarding Incomplete</span></td>
+<td>Jan 30, 2026</td>
+<td style="color:var(--muted)">&mdash;</td>
+<td style="text-align:right;font-weight:600">$5,565</td>
+<td style="text-align:right">$7,167</td>
+<td style="text-align:right">$209</td>
+</tr>
+<tr>
+<td style="font-weight:600">Quimflowers</td>
+<td><span class="badge badge-esuite">eSuite Grower</span></td>
+<td>Catleya Almeida</td>
+<td>Apr 2</td>
+<td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div><span class="progress-label">100%</span></div></td>
+<td><span class="badge badge-yellow">Eligible &mdash; Not Onboarded</span></td>
+<td style="color:var(--muted)">&mdash;</td>
+<td style="color:var(--muted)">&mdash;</td>
+<td style="text-align:right;color:var(--muted)">&mdash;</td>
+<td style="text-align:right;color:var(--muted)">&mdash;</td>
+<td style="text-align:right;color:var(--muted)">&mdash;</td>
+</tr>
+</tbody>
+</table></div>
+<div style="padding:12px 24px;font-size:.75rem;color:var(--muted);border-top:1px solid var(--border)">Note: Expobloom and Gypso are not eligible for KPay (their clients do not accept cards).</div>
 </div>
 
 <!-- IN TRAINING PIPELINE -->
 <div class="section-title">In Training &mdash; Payments Pipeline</div>
 
 <div class="table-card">
-<div class="table-header"><h2>Cuentas en Implementacion</h2><div style="font-size:.72rem;color:var(--muted)">Payment method completion + estimated KPayments</div></div>
+<div class="table-header"><h2>Accounts in Implementation</h2><div style="font-size:.72rem;color:var(--muted)">Payment method completion + estimated KPayments</div></div>
 <div class="table-wrap"><table>
 <thead><tr>
 <th>Account</th><th>Type</th><th>Kick Off</th><th>Est. Go-Live</th><th>Days Since KO</th>
@@ -325,7 +286,7 @@ tbody td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 <td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:9%;background:#ef4444"></div></div><span class="progress-label" style="color:#ef4444">9%</span></div></td>
 <td style="text-align:right;font-weight:600">$50,000</td>
 <td style="text-align:right">$600,000</td>
-<td style="font-size:.75rem;color:#ef4444;font-weight:500">Go-live en 5 dias, baja preparacion payments</td>
+<td style="font-size:.75rem;color:var(--muted)">Go-live imminent, low payments readiness</td>
 </tr>
 <tr>
 <td style="font-weight:600">JFS Wholesale</td>
@@ -334,7 +295,7 @@ tbody td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 <td style="text-align:center"><span class="badge badge-yellow">Migrating from FCS</span></td>
 <td style="text-align:right;font-weight:600">$63,333</td>
 <td style="text-align:right">$760,000</td>
-<td style="font-size:.75rem;color:var(--muted)">Se migrara de FCS antes del go-live</td>
+<td style="font-size:.75rem;color:var(--muted)">Migrating from FCS before go-live</td>
 </tr>
 <tr>
 <td style="font-weight:600">Heirloom Home Decor</td>
@@ -343,7 +304,7 @@ tbody td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 <td style="text-align:center"><div class="progress-wrap"><div class="progress-bar"><div class="progress-fill" style="width:0%;background:#ef4444"></div></div><span class="progress-label" style="color:#ef4444">0%</span></div></td>
 <td style="text-align:right">$4,167</td>
 <td style="text-align:right">$50,000</td>
-<td style="font-size:.75rem;color:var(--muted)">11 dias para go-live</td>
+<td style="font-size:.75rem;color:var(--muted)">11 days to go-live</td>
 </tr>
 </tbody>
 <tfoot>
@@ -357,14 +318,71 @@ tbody td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 </table></div>
 </div>
 
+<!-- ORA - OPERATIONAL READINESS ASSESSMENT -->
+<div class="section-title">ORA &mdash; Operational Readiness Assessment</div>
+
+<div class="ora-grid">
+
+<div class="ora-card">
+<h3>Heirloom Home Decor</h3>
+<span class="ora-status"><span class="badge badge-green">Completed</span></span>
+<div class="ora-row"><span class="label">Annual GMV</span><span class="value">$250,000</span></div>
+<div class="ora-row"><span class="label">LLC</span><span class="value">Yes</span></div>
+<div class="ora-row"><span class="label">Active Clients</span><span class="value">30</span></div>
+<div class="ora-row"><span class="label">GMV Online</span><span class="value">10%</span></div>
+<div class="ora-row"><span class="label">Standing Orders</span><span class="value">10%</span></div>
+<div class="ora-row"><span class="label">Open Market</span><span class="value">90%</span></div>
+<div class="ora-row"><span class="label">Cards</span><span class="value">60%</span></div>
+<div class="ora-row"><span class="label">Checks</span><span class="value">10%</span></div>
+<div class="ora-row"><span class="label">ACH</span><span class="value">30%</span></div>
+<div class="ora-row"><span class="label">FedEx</span><span class="value">Yes</span></div>
+<div class="ora-row"><span class="label">Clients Accept Cards</span><span class="value">Yes</span></div>
+</div>
+
+<div class="ora-card">
+<h3>San Jose Floral Service LLC</h3>
+<span class="ora-status"><span class="badge badge-yellow">In Progress</span></span>
+<div class="ora-row"><span class="label">Annual GMV</span><span class="value">$200,000</span></div>
+<div class="ora-row"><span class="label">LLC</span><span class="value">Yes</span></div>
+<div class="ora-row"><span class="label">Active Clients</span><span class="value">10</span></div>
+<div class="ora-row"><span class="label">GMV Online</span><span class="value">0%</span></div>
+<div class="ora-row"><span class="label">Standing Orders</span><span class="value">5%</span></div>
+<div class="ora-row"><span class="label">Open Market</span><span class="value">95%</span></div>
+<div class="ora-row"><span class="label">Cards</span><span class="value">50%</span></div>
+<div class="ora-row"><span class="label">Checks</span><span class="value">10%</span></div>
+<div class="ora-row"><span class="label">ACH</span><span class="value">20%</span></div>
+<div class="ora-row"><span class="label">FedEx</span><span class="value">No</span></div>
+<div class="ora-row"><span class="label">Clients Accept Cards</span><span class="value">Yes</span></div>
+</div>
+
+<div class="ora-card">
+<h3>Universal Flowers Farm Inc</h3>
+<span class="ora-status"><span class="badge badge-green">Completed</span></span>
+<div class="ora-row"><span class="label">Annual GMV</span><span class="value">$4,000,000</span></div>
+<div class="ora-row"><span class="label">LLC</span><span class="value">Yes</span></div>
+<div class="ora-row"><span class="label">Active Clients</span><span class="value">25</span></div>
+<div class="ora-row"><span class="label">GMV Online</span><span class="value">0%</span></div>
+<div class="ora-row"><span class="label">Standing Orders</span><span class="value">20%</span></div>
+<div class="ora-row"><span class="label">Open Market</span><span class="value">80%</span></div>
+<div class="ora-row"><span class="label">Cards</span><span class="value">30%</span></div>
+<div class="ora-row"><span class="label">Checks</span><span class="value">20%</span></div>
+<div class="ora-row"><span class="label">ACH</span><span class="value">20%</span></div>
+<div class="ora-row"><span class="label">FedEx</span><span class="value">No</span></div>
+<div class="ora-row"><span class="label">Clients Accept Cards</span><span class="value">Yes</span></div>
+</div>
+
+</div>
+
+<div class="data-note" style="background:#f8fafc;border-color:var(--border)">Note: No ORA record found for Nova Packing or JFS Wholesale.</div>
+
 <!-- NOT STARTED -->
 <div class="section-title">Not Started &mdash; Upcoming</div>
 <div class="table-card">
-<div class="table-header"><h2>Proximas Cuentas</h2><div style="font-size:.72rem;color:var(--muted)">Sin fecha de kick-off confirmada</div></div>
+<div class="table-header"><h2>Upcoming Accounts</h2><div style="font-size:.72rem;color:var(--muted)">No confirmed kick-off date</div></div>
 <div class="table-wrap"><table>
 <thead><tr><th>Account</th><th>Type</th><th>Expected Start</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td style="font-weight:500">Transit Loads ATL LLC</td><td><span class="badge badge-imp">Importer</span></td><td>TBD</td><td><span class="badge badge-gray">Not Started</span></td></tr>
+<tr><td style="font-weight:500">Transit Loads ATL LLC</td><td><span class="badge" style="background:#e0e7ff;color:#3730a3">Importer</span></td><td>TBD</td><td><span class="badge badge-gray">Not Started</span></td></tr>
 <tr><td style="font-weight:500">Northwest</td><td><span class="badge badge-purple">Wholesale</span></td><td>TBD</td><td><span class="badge badge-gray">Not Started</span></td></tr>
 <tr><td style="font-weight:500">AVON</td><td><span class="badge badge-purple">Wholesale</span></td><td>June 2026</td><td><span class="badge badge-gray">Not Started</span></td></tr>
 <tr><td style="font-weight:500">Springfield Florist Supply</td><td><span class="badge badge-purple">Wholesale</span></td><td>July 2026</td><td><span class="badge badge-gray">Not Started</span></td></tr>
@@ -374,10 +392,22 @@ tbody td{padding:8px 10px;vertical-align:middle;white-space:nowrap}
 
 <!-- ADHOC / SPECIAL -->
 <div class="section-title">Adhoc &amp; Special Cases</div>
-<div class="alert-card info"><div class="alert-project">Interflor</div><div class="alert-msg">$2K &mdash; Fecha referencia: 16 abril 2026</div></div>
-<div class="alert-card warning"><div class="alert-project">Del Tropico / Ameriblooms</div><div class="alert-msg">On hold &mdash; requiere seguimiento</div></div>
-<div class="alert-card info"><div class="alert-project">Tessa</div><div class="alert-msg">$11K more vs previous period &mdash; crecimiento positivo</div></div>
-<div class="alert-card warning"><div class="alert-project">Natural Flowers</div><div class="alert-msg">Not started &mdash; pendiente de activar</div></div>
+<div class="alert-card info">
+<div class="alert-project">Interflor</div>
+<div class="alert-msg">$2K &mdash; Reference date: April 16, 2026</div>
+</div>
+<div class="alert-card warning">
+<div class="alert-project">Del Tropico / Ameriblooms</div>
+<div class="alert-msg">On hold &mdash; requires follow-up</div>
+</div>
+<div class="alert-card info">
+<div class="alert-project">Tessa</div>
+<div class="alert-msg">$11K more vs previous period &mdash; positive growth</div>
+</div>
+<div class="alert-card warning">
+<div class="alert-project">Natural Flowers</div>
+<div class="alert-msg">Not started &mdash; pending activation</div>
+</div>
 
 <!-- BENCHMARKS -->
 <div class="section-title">Benchmarks &mdash; Payment Method Completion</div>
