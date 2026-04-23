@@ -105,6 +105,7 @@ tr.zombie-row:hover { background: #EEEEEE; opacity: 1; }
 <div class="tab-nav">
   <button class="tab-btn active" data-tab="atrisk" onclick="switchTab('atrisk')">At Risk <span class="tab-count">266</span></button>
   <button class="tab-btn" data-tab="norenovadas" onclick="switchTab('norenovadas')">No Renovadas <span class="tab-count">171</span></button>
+  <button class="tab-btn" data-tab="alertassf" onclick="switchTab('alertassf')">Alertas SF <span class="tab-count">89</span></button>
 </div>
 
 <div id="panel-atrisk" class="tab-panel">
@@ -222,7 +223,7 @@ tr.zombie-row:hover { background: #EEEEEE; opacity: 1; }
           <th>Producto</th>
           <th>Priority</th>
           <th>Riesgo</th>
-          <th>WoW vs 16-abr</th>
+          <th>WoW vs 2026-04-16</th>
           <th>Razon</th>
           <th>Segmento</th>
           <th>Ultimo Login</th>
@@ -6420,6 +6421,486 @@ tr.zombie-row:hover { background: #EEEEEE; opacity: 1; }
 
 </div> <!-- /#panel-norenovadas -->
 
+<div id="panel-alertassf" class="tab-panel" style="display:none">
+  <div class="metrics-grid">
+    <div class="metric-card warning"><div class="metric-value">89</div><div class="metric-label">Total Alertas</div></div>
+    <div class="metric-card danger"><div class="metric-value">0</div><div class="metric-label">Status desactualizado</div></div>
+    <div class="metric-card warning"><div class="metric-value">77</div><div class="metric-label">Sin go_live_date</div></div>
+    <div class="metric-card info"><div class="metric-value">1</div><div class="metric-label">Sin renewal date</div></div>
+    <div class="metric-card info"><div class="metric-value">11</div><div class="metric-label">Adoption vs TX</div></div>
+  </div>
+  <div class="card">
+    <h2>Alertas de Calidad de Datos — Salesforce (89)</h2>
+    <div class="card-body">
+      <p style="font-size:0.88rem;color:#546E7A;margin-bottom:16px">Estos registros tienen inconsistencias detectadas automáticamente que requieren corrección en Salesforce.</p>
+      <div class="controls" style="margin-bottom:12px">
+        <input type="text" id="sfSearch" placeholder="Buscar cuenta..." onkeyup="applySfFilters()">
+        <div class="filter-group">
+          <span class="filter-title">Categoría</span>
+          <label class="toggle-all"><input type="checkbox" checked onchange="toggleSfAll('sfCat', this.checked)"> Todas</label>
+          <label><input type="checkbox" name="sfCat" value="Status desactualizado" onchange="onSfFilter('sfCat')"> Status desactualizado</label>
+          <label><input type="checkbox" name="sfCat" value="Sin go_live_date" onchange="onSfFilter('sfCat')"> Sin go_live_date</label>
+          <label><input type="checkbox" name="sfCat" value="Sin renewal date" onchange="onSfFilter('sfCat')"> Sin renewal date</label>
+          <label><input type="checkbox" name="sfCat" value="Adoption vs TX inconsistente" onchange="onSfFilter('sfCat')"> Adoption vs TX</label>
+        </div>
+      </div>
+      <div id="sfRowCount" class="text-small" style="margin-bottom:8px"></div>
+      <table>
+        <thead>
+          <tr><th>Categoría</th><th>Cuenta</th><th>Detalle</th></tr>
+        </thead>
+        <tbody id="sfTableBody">
+          <tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Rosas del Viento (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Import Flowers Nashville LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Mike's Finest Wholesale Flower (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Misty Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>A Trilogy Floral - Zamba Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>ACA Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Alders Wholesale Florist (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Allure Farms (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>AmeriLink Floratrader (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Apex Floral (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Arizona Family Florist (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Baisch & Skinner (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Bella Blossom LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Birmingham Wholesale Floral (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Bunches Direct Blumenimport GmbH (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Cananvalle USA LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Cityside Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Cleveland Plant & Flower Co. (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Coastal Wholesale Florist (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Continental Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>DP Flowers Corp (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>EQR USA (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>EXCELLENT FLOWERS INC. (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Exclusive Wholesale (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Fair Trade Floral Inc. (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Farm Fresh Exports INC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Farm To Canada (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>FloraCo, Inc (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>FloraLink (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Florimex Toronto Corp. (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Flowerlist Farms (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Fresca Farms (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Galleria Farms (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Global Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Golden Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Greens and Flowers Connection (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Groflowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>H&F Greens Inc (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Herradura Growers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>INTERNATIONAL TRADING AND SERVICES INC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Inversiones Napy S.A (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>JULIET WHOLESALE FLOWERS LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Jet Fresh Flower Distributors Inc. (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Johnsen's Wholesale Florist (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>LD Trading (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Latitud - Floral Chain (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Legacy Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Liberty Blooms (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Lubbock Wholesale (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Mayesh Wholesale Florist Inc (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>PAT FLOR S.C.A.R.L ITALY (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Palm Beach Wholesale Flowers, Inc (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Poppies Design Studio (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Posies Flower Truck (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Prime Petals LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Pronto Farms LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>R&W Wholesale Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Rosaprima International, LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Royal Flower Import Group Inc. (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Rumhora Greens (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>SOS Floral (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>San Antonio Flower (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>San Francisco Gardens (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Servicios Chilfresh Ltda. (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Sofi's Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Sole Farms (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Splendor Proteas, LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Staalduinen Floral Limited (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Stadium Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Sunburst Farms (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Tessa Group (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Unifour Wholesale (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Valley Springs (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>W.B. Floral Group (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Wafex USA (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Webbs Wholesale Florist (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin go_live_date</span></td>
+  <td><strong>Zoom-Bloom (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Status Active pero sin fecha de go-live registrada</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Sin renewal date</span></td>
+  <td><strong>Coward & Glisson Whsl. Flst.</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Cuenta activa sin fecha de renovación</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Flora Traders (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (3/4 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>AKARANA COMPANY (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (3/3 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Alison Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (3/4 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Blossom Express (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (2/3 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Florens Group LLC (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (2/2 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Floricola Llanos de Alba (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (5/5 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Grupo Vegaflor (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (3/4 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Gypso (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (5/5 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Matthioli Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (3/4 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Olimpo Flowers (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (3/5 usuarios)</td>
+</tr>
+<tr>
+  <td><span class="badge badge-warning">Adoption vs TX inconsistente</span></td>
+  <td><strong>Patagonia Sun (L1)</strong></td>
+  <td style="color:#546E7A;font-size:0.82rem">Healthy adoption pero 0 TX en 30d (3/4 usuarios)</td>
+</tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> <!-- /#panel-alertassf -->
+
 <div class="footer">
   Customer Risk Monitoring v1.0 — Iris Data Specialist | Refresh semanal<br>
   Fuentes: Snowflake (COMPANIES, USER_BY_COMPANIES, SALE_DETAILS) + Salesforce (renewal_date)<br>
@@ -6537,6 +7018,37 @@ function applyChurnFilters() {
   if (noEl) noEl.style.display = visible === 0 ? '' : 'none';
 }
 if (document.getElementById('churnTableBody')) applyChurnFilters();
+
+// ── SF Alerts tab filters ──
+function toggleSfAll(name, checked) {
+  document.querySelectorAll('input[name="' + name + '"]').forEach(cb => { cb.checked = false; });
+  applySfFilters();
+}
+function onSfFilter(name) {
+  const boxes = document.querySelectorAll('input[name="' + name + '"]');
+  const checked = Array.from(boxes).filter(cb => cb.checked);
+  const todosBox = boxes[0].closest('.filter-group').querySelector('.toggle-all input');
+  todosBox.checked = checked.length === 0;
+  applySfFilters();
+}
+function applySfFilters() {
+  const search = document.getElementById('sfSearch')?.value.toLowerCase() || '';
+  const cats = Array.from(document.querySelectorAll('input[name="sfCat"]:checked')).map(cb => cb.value);
+  const rows = document.querySelectorAll('#sfTableBody tr');
+  let visible = 0;
+  rows.forEach(row => {
+    const acct = row.cells[1]?.textContent.toLowerCase() || '';
+    const cat = row.cells[0]?.textContent.trim() || '';
+    const show =
+      (search === '' || acct.includes(search)) &&
+      (cats.length === 0 || cats.includes(cat));
+    row.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const countEl = document.getElementById('sfRowCount');
+  if (countEl) countEl.textContent = visible + ' de ' + rows.length + ' alertas';
+}
+if (document.getElementById('sfTableBody')) applySfFilters();
 </script>
 
 </body>
