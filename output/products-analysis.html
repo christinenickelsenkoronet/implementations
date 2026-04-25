@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Análisis de Productos — Catálogo Cross-Cliente</title>
+<style>
+  :root {
+    --bg: #f7f7f8; --panel: #fff; --border: #e3e3e6;
+    --text: #1d1d1f; --muted: #6e6e73; --accent: #0066cc;
+    --critical: #d70015; --warning: #b25000; --success: #1f7a3a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); }
+  .container { max-width: 1320px; margin: 0 auto; padding: 32px 24px 80px; }
+  header.h-page h1 { margin: 0 0 4px; font-size: 26px; }
+  header.h-page .sub { color: var(--muted); font-size: 13px; }
+  header.h-page .gen { color: var(--muted); font-size: 11px; margin-top: 4px; }
+  .nav-back { display: inline-block; color: var(--accent); text-decoration: none; font-size: 13px; margin-bottom: 16px; }
+  .nav-back:hover { text-decoration: underline; }
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 20px 0 24px; }
+  .summary .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .summary .num { font-size: 24px; font-weight: 700; color: var(--accent); }
+  .summary .lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .summary .card.alert .num { color: var(--critical); }
+  .summary .card.warn .num { color: var(--warning); }
+  .insight { background: #fff8e6; border-left: 4px solid #ffb800; padding: 14px 18px; border-radius: 4px; margin: 16px 0 24px; font-size: 13px; line-height: 1.6; }
+  .insight strong { color: #5a3a00; }
+  .insight.crit { background: #fde8ea; border-left-color: var(--critical); }
+  .insight.crit strong { color: var(--critical); }
+  .insight.green { background: #e8f6ec; border-left-color: var(--success); }
+  .insight.green strong { color: var(--success); }
+  .section-title { font-size: 17px; font-weight: 600; margin: 28px 0 12px; }
+  .section-sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+  .table-wrap { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead { background: #f1f3f5; }
+  th { text-align: left; padding: 10px 12px; font-weight: 600; border-bottom: 2px solid var(--border); font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; color: var(--muted); }
+  th.num, td.num { text-align: right; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .pill { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+  .pill-dup { background: #fde8ea; color: var(--critical); }
+  .pill-ok { background: #e8f6ec; color: var(--success); }
+  .meta { color: var(--muted); font-size: 11px; }
+  ol.actions li { margin-bottom: 10px; line-height: 1.5; font-size: 13px; }
+  footer { color: var(--muted); font-size: 11px; text-align: center; margin-top: 28px; line-height: 1.6; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="nav-back">← Volver a Implementations</a>
+
+  <header class="h-page">
+    <h1>📦 Análisis de Productos — Catálogo Cross-Cliente</h1>
+    <div class="sub">Cantidad de productos, top comercializados, duplicados, y oportunidad de estandarización.</div>
+    <div class="gen">Generado 2026-04-25 · Source: PRODUCTION.ANALYTICS.PRODUCTS + SALES_SV (Snowflake) · 12 meses ventas</div>
+  </header>
+
+  <div class="summary">
+    <div class="card alert"><div class="num">20.4M</div><div class="lbl">Productos distintos (product_id)</div></div>
+    <div class="card"><div class="num">697</div><div class="lbl">Compañías con catálogo</div></div>
+    <div class="card warn"><div class="num">29.2K</div><div class="lbl">Avg productos por cuenta</div></div>
+    <div class="card"><div class="num">55,560</div><div class="lbl">Categorías</div></div>
+    <div class="card"><div class="num">1.65M</div><div class="lbl">Rollup names únicos</div></div>
+    <div class="card"><div class="num">1.44M</div><div class="lbl">Descripciones únicas (norm)</div></div>
+    <div class="card alert"><div class="num">6,498</div><div class="lbl">Network codes (consolidado)</div></div>
+  </div>
+
+  <div class="insight crit">
+    <strong>🚨 Hallazgo clave:</strong> los 20.4M product_ids individuales colapsan a apenas <strong>6,498 PRODUCT_NETWORK_CODE_ID</strong> únicos. Eso es un factor de duplicación de <strong>~3,135x</strong>. Cada cliente mantiene su propio catálogo aislado para esencialmente los mismos productos físicos.
+    <br><br>
+    Aún sin tocar la base, normalizando solo el campo <code>PRODUCT_DESCRIPTION</code> con UPPER+TRIM, los 20.4M productos colapsan a <strong>1.44M descripciones únicas</strong> — factor de duplicación intra-descripción de 14x. Y con <code>PRODUCT_NETWORK_CODE</code>, factor 3,135x.
+  </div>
+
+  <div class="section-title">1. Top 15 categorías por volumen de catálogo</div>
+  <div class="section-sub">Categorías más usadas cross-clientes. Indican dónde la duplicación es más alta y dónde la estandarización tendría más impacto.</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Categoría</th>
+          <th class="num"># Productos (product_id)</th>
+          <th class="num"># Cuentas con la categoría</th>
+          <th class="num">Productos / cuenta promedio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Rose</strong></td><td class="num">4,865,047</td><td class="num">475</td><td class="num">10,242</td></tr>
+        <tr><td><strong>Poms</strong></td><td class="num">1,468,212</td><td class="num">372</td><td class="num">3,946</td></tr>
+        <tr><td><strong>Mums</strong></td><td class="num">1,008,170</td><td class="num">370</td><td class="num">2,725</td></tr>
+        <tr><td><strong>Rose Spray</strong></td><td class="num">932,744</td><td class="num">371</td><td class="num">2,514</td></tr>
+        <tr><td><strong>Ranunculus</strong></td><td class="num">780,191</td><td class="num">448</td><td class="num">1,742</td></tr>
+        <tr><td><strong>Delphinium</strong></td><td class="num">650,265</td><td class="num">445</td><td class="num">1,461</td></tr>
+        <tr><td><strong>Carnation</strong></td><td class="num">624,131</td><td class="num">460</td><td class="num">1,357</td></tr>
+        <tr><td><strong>Foliage/Greens</strong></td><td class="num">597,135</td><td class="num">371</td><td class="num">1,609</td></tr>
+        <tr><td><strong>Rose Garden</strong></td><td class="num">551,535</td><td class="num">367</td><td class="num">1,503</td></tr>
+        <tr><td><strong>Alstroemeria</strong></td><td class="num">513,347</td><td class="num">455</td><td class="num">1,128</td></tr>
+        <tr><td><strong>Misc Flowers</strong></td><td class="num">437,864</td><td class="num">371</td><td class="num">1,180</td></tr>
+        <tr><td><strong>Hydrangea</strong></td><td class="num">374,972</td><td class="num">481</td><td class="num">780</td></tr>
+        <tr><td><strong>Lily</strong></td><td class="num">341,360</td><td class="num">344</td><td class="num">992</td></tr>
+        <tr><td><strong>Hypericum</strong></td><td class="num">339,412</td><td class="num">457</td><td class="num">743</td></tr>
+        <tr><td><strong>Stock</strong></td><td class="num">291,395</td><td class="num">446</td><td class="num">654</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <strong>Lectura:</strong> En Rose, una cuenta promedio tiene <strong>10,242 product_ids distintos</strong>. Imposible operar bien — multiplicación por color × longitud × variedad × grade × supplier. La estandarización via Network Code reduciría esto a ~50-100 referentes por cliente sin perder granularidad.
+  </div>
+
+  <div class="section-title">2. Top 20 productos más comercializados (últimos 12 meses)</div>
+  <div class="section-sub">Por número de transacciones (sale_item_id) y total amount. Productos con descripción normalizada (UPPER + TRIM) — incluye duplicados visibles entre filas.</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Descripción normalizada</th>
+          <th class="num"># Transacciones</th>
+          <th class="num">$ Total</th>
+          <th>Marca</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>HYDRANGEA WHITE SELECT</td><td class="num">67,567</td><td class="num">$4.27M</td><td></td></tr>
+        <tr><td>2</td><td>ROS AST SPECIAL 60</td><td class="num">39,201</td><td class="num">$2.26M</td><td><span class="pill pill-dup">posible dup</span></td></tr>
+        <tr><td>3</td><td>HYDRANGEA BLUE SELECT</td><td class="num">36,786</td><td class="num">$1.75M</td><td></td></tr>
+        <tr><td>4</td><td>RANUNCULUS WHITE</td><td class="num">35,904</td><td class="num">$2.83M</td><td></td></tr>
+        <tr><td>5</td><td><strong>ROSE RED FREEDOM 60CM</strong></td><td class="num">35,400</td><td class="num">$5.30M</td><td><span class="pill pill-dup">duplicado A1</span></td></tr>
+        <tr><td>6</td><td>ROSE ASSORTED</td><td class="num">35,203</td><td class="num">$3.53M</td><td></td></tr>
+        <tr><td>7</td><td>STOCK WHITE</td><td class="num">34,077</td><td class="num">$1.81M</td><td></td></tr>
+        <tr><td>8</td><td>CARNATION WHITE SELECT</td><td class="num">33,573</td><td class="num">$1.39M</td><td></td></tr>
+        <tr><td>9</td><td>EUCALYPTUS SILVER DOLLAR</td><td class="num">33,254</td><td class="num">$1.18M</td><td></td></tr>
+        <tr><td>10</td><td>STATICE PURPLE</td><td class="num">33,241</td><td class="num">$0.95M</td><td></td></tr>
+        <tr><td>11</td><td>LISIANTHUS WHITE</td><td class="num">33,173</td><td class="num">$2.41M</td><td></td></tr>
+        <tr><td>12</td><td>HYDRANGEA WHITE PREMIUM</td><td class="num">32,452</td><td class="num">$2.73M</td><td></td></tr>
+        <tr><td>13</td><td><strong>ROS RED FREEDOM 60</strong></td><td class="num">31,229</td><td class="num">$7.96M</td><td><span class="pill pill-dup">duplicado A2 (mismo que #5)</span></td></tr>
+        <tr><td>14</td><td>ROS AST SPECIAL MIX</td><td class="num">29,637</td><td class="num">$2.93M</td><td><span class="pill pill-dup">posible dup #2</span></td></tr>
+        <tr><td>15</td><td>EUCALYPTUS SEEDED</td><td class="num">27,991</td><td class="num">$0.88M</td><td></td></tr>
+        <tr><td>16</td><td>HYDRANGEA GREEN MINI</td><td class="num">27,785</td><td class="num">$1.56M</td><td></td></tr>
+        <tr><td>17</td><td>STOCK WHITE DOUBLE</td><td class="num">25,842</td><td class="num">$0.74M</td><td></td></tr>
+        <tr><td>18</td><td><strong>ROSE FREEDOM RED 60CM</strong></td><td class="num">25,370</td><td class="num">$3.70M</td><td><span class="pill pill-dup">duplicado A3 (mismo que #5,#13)</span></td></tr>
+        <tr><td>19</td><td>LEATHER LEAF</td><td class="num">25,327</td><td class="num">$1.32M</td><td></td></tr>
+        <tr><td>20</td><td>MIXED BOUQUETS</td><td class="num">24,646</td><td class="num">$1.75M</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight crit">
+    <strong>🚨 Duplicado masivo en top-20:</strong> "Rose Red Freedom 60cm" aparece como 3 descripciones distintas (filas #5, #13, #18). Suman <strong>92,000 transacciones</strong> y <strong>$16.96M en 12 meses</strong> bajo lo que es el mismo SKU físico. Si esto es el "Rose Red Freedom 60cm" verdadero (no variante), es la mayor oportunidad de standardización single-SKU del catálogo.
+    <br><br>
+    Igual con #2 + #14 (ambos "Ros Ast Special" — 60 vs Mix): ~69K TX, $5.2M.
+  </div>
+
+  <div class="section-title">3. Análisis de duplicados — Descripciones más compartidas entre cuentas</div>
+  <div class="section-sub">Mismo nombre normalizado (UPPER + TRIM) que existe en muchas cuentas, cada una con su propio product_id. Indica oportunidad inmediata de standardización via Network Code.</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Descripción normalizada</th>
+          <th class="num"># Cuentas</th>
+          <th class="num"># Product_ids</th>
+          <th class="num">Factor dup. intra-nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>UNKNOWN UNKNOWN <span class="pill pill-dup">data quality</span></td><td class="num">534</td><td class="num">645</td><td class="num">1.2x</td></tr>
+        <tr><td>HYDRANGEA WHITE SELECT</td><td class="num">412</td><td class="num">1,098</td><td class="num">2.7x</td></tr>
+        <tr><td>HYDRANGEA WHITE PREMIUM</td><td class="num">410</td><td class="num">1,509</td><td class="num">3.7x</td></tr>
+        <tr><td>CARNATION WHITE FANCY</td><td class="num">402</td><td class="num">1,061</td><td class="num">2.6x</td></tr>
+        <tr><td>CARNATION ASSORTED FANCY</td><td class="num">400</td><td class="num">943</td><td class="num">2.4x</td></tr>
+        <tr><td>CARNATION RED FANCY</td><td class="num">398</td><td class="num">906</td><td class="num">2.3x</td></tr>
+        <tr><td>HYDRANGEA WHITE JUMBO</td><td class="num">391</td><td class="num">1,130</td><td class="num">2.9x</td></tr>
+        <tr><td>CARNATION PINK FANCY</td><td class="num">385</td><td class="num">846</td><td class="num">2.2x</td></tr>
+        <tr><td>ROSE RED FREEDOM 60CM</td><td class="num">380</td><td class="num">1,036</td><td class="num">2.7x</td></tr>
+        <tr><td>HYDRANGEA GREEN MINI</td><td class="num">378</td><td class="num">966</td><td class="num">2.6x</td></tr>
+        <tr><td>ROSE RED FREEDOM 50CM</td><td class="num">375</td><td class="num">1,073</td><td class="num">2.9x</td></tr>
+        <tr><td>ROSE RED FREEDOM 40CM</td><td class="num">367</td><td class="num">892</td><td class="num">2.4x</td></tr>
+        <tr><td>HYDRANGEA BLUE SELECT</td><td class="num">361</td><td class="num">1,275</td><td class="num">3.5x</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight crit">
+    <strong>🚨 Data quality crítica:</strong> "UNKNOWN UNKNOWN" como descripción aparece en <strong>534 cuentas</strong> con 645 product_ids. Es el <em>nombre más compartido del sistema</em>. Estos son productos sin descripción adecuada → invisibles en analytics, en search, en e-commerce. Quick-win obvio.
+  </div>
+
+  <div class="section-title">4. Estado actual de estandarización — Network Codes</div>
+  <div class="section-sub">Top 12 PRODUCT_NETWORK_CODE_NAME (consolidado supuesto). Idealmente, productos similares deberían mapear al mismo network code.</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Network code</th>
+          <th class="num"># Product_ids</th>
+          <th class="num"># Cuentas</th>
+          <th>Comentario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>OVERIG</td><td class="num">701,296</td><td class="num">520</td><td><span class="pill pill-dup">"otros" en holandés — catch-all sin clasificar</span></td></tr>
+        <tr><td>Sea Waltz</td><td class="num">332,523</td><td class="num">267</td><td>variedad legítima de rosa</td></tr>
+        <tr><td>N/A</td><td class="num">170,708</td><td class="num">80</td><td><span class="pill pill-dup">no clasificados</span></td></tr>
+        <tr><td>Xlence</td><td class="num">64,794</td><td class="num">309</td><td>variedad gypsophila premium</td></tr>
+        <tr><td>atropurpurea Blackberry Scoop</td><td class="num">64,036</td><td class="num">189</td><td>variedad scabiosa</td></tr>
+        <tr><td>Mondial</td><td class="num">37,603</td><td class="num">385</td><td><span class="pill pill-dup">duplicado de "MONDIAL"</span></td></tr>
+        <tr><td>Romancero</td><td class="num">35,062</td><td class="num">232</td><td>variedad rose</td></tr>
+        <tr><td>Freedom</td><td class="num">34,308</td><td class="num">423</td><td>variedad rose icónica</td></tr>
+        <tr><td>Vendela</td><td class="num">33,542</td><td class="num">380</td><td>variedad rose</td></tr>
+        <tr><td>Quicksand</td><td class="num">30,576</td><td class="num">342</td><td>variedad rose</td></tr>
+        <tr><td>MONDIAL</td><td class="num">27,915</td><td class="num">425</td><td><span class="pill pill-dup">duplicado de "Mondial"</span></td></tr>
+        <tr><td>Tibet</td><td class="num">26,465</td><td class="num">328</td><td>variedad rose</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <strong>Lectura:</strong> Network Code ya hace <em>buena parte</em> del trabajo de estandarización (6,498 vs 20.4M productos = factor 3,135x). Pero tiene 3 problemas resolvibles:
+    <br>1. <strong>"OVERIG" + "N/A"</strong> = 872K productos sin clasificar (4% del total). Necesita ML/manual classification.
+    <br>2. <strong>Casing inconsistente</strong>: "Mondial" y "MONDIAL" están split en 385 + 425 cuentas. Quick-win normalizar.
+    <br>3. <strong>Falta granularidad</strong> en algunos casos: "Freedom" no distingue 40cm/50cm/60cm — relevante para sales analytics. Validar si network_code es solo "variedad" o debería incluir grade.
+  </div>
+
+  <div class="section-title">5. ¿Hay opción de estandarizar? — Recomendación</div>
+
+  <div class="insight green">
+    <strong>✅ Sí — la infra ya existe.</strong> Salesforce/Snowflake ya tiene los campos:
+    <ul>
+      <li><code>PRODUCT_NETWORK_CODE_ID</code> + <code>PRODUCT_NETWORK_CODE_NAME</code> — consolidación cross-cuenta a nivel variedad (6,498 únicos)</li>
+      <li><code>CATEGORY_NETWORK_CODE_ID</code> + <code>CATEGORY_NETWORK_CODE_NAME</code> — consolidación cross-cuenta a nivel categoría (~50-100 únicas)</li>
+      <li><code>ROLLUP_PRODUCT_NAME</code> — nombre compuesto canónico (1.65M únicos)</li>
+    </ul>
+    Lo que falta es <strong>uso</strong>: muchas cuentas no asignan network code a sus productos (de ahí "OVERIG" + "N/A"), y reportes operativos siguen usando <code>PRODUCT_DESCRIPTION</code> libre en lugar del rollup standardizado.
+  </div>
+
+  <div class="section-title">6. Plan propuesto — 4 fases</div>
+  <ol class="actions">
+    <li>
+      <strong>Fase 1 (Quick wins, 1 semana):</strong>
+      <ul>
+        <li>Normalizar casing duplicado en network codes (Mondial vs MONDIAL → ahorra 800+ "duplicados" virtuales).</li>
+        <li>Limpiar "UNKNOWN UNKNOWN" (645 productos en 534 cuentas) — pedir a equipos Implementations re-clasificar.</li>
+        <li>Reclasificar OVERIG + N/A (872K productos) priorizando top-30 cuentas por sales volume.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Fase 2 (Standardización dirigida, 3 semanas):</strong> Crear regla automática de matching descripción → network_code para los top-100 nombres más duplicados (Hydrangea White Select, Rose Red Freedom 60cm, etc.). Asignar network_code automáticamente a productos nuevos en el setup.
+    </li>
+    <li>
+      <strong>Fase 3 (Reporting unificado, 2 semanas):</strong> Cambiar dashboards (Risk, Alba PMO, Customer Dashboard CDASH-001) para usar <code>PRODUCT_NETWORK_CODE_NAME</code> como dimensión principal en lugar de <code>PRODUCT_DESCRIPTION</code>. Evita la fragmentación cuando se comparan cuentas.
+    </li>
+    <li>
+      <strong>Fase 4 (Catálogo central, 6-8 semanas — Roadmap Product):</strong> Construir un "master catalog" Koronet (10K-20K SKUs canónicos) que las cuentas puedan adoptar directamente al setup. Reduce el setup de 29K productos por cuenta a "selecciona 200 del master + 50 custom".
+    </li>
+  </ol>
+
+  <div class="insight">
+    <strong>ROI estimado:</strong> 697 cuentas × 29K productos promedio = 20M product setups acumulados. Si el master catalog reduce el setup en 70%, ahorra <strong>~14M setup ops</strong> históricos + acelera onboarding nuevos clientes en ~30%. La oportunidad analytics (entender mercado cross-cuenta) es la palanca real: <em>"¿cuál es el precio promedio de Rose Red Freedom 60cm en Wholesalers vs Importers?"</em> hoy es imposible sin standardización; con network_code es trivial.
+  </div>
+
+  <footer>
+    PROD-ANALYSIS-001 · Antonia · Source: PRODUCTION.ANALYTICS.PRODUCTS + SALES_SV (Snowflake)<br>
+    Generado 2026-04-25 · 12 meses ventas (DATEADD(-365, CURRENT_DATE)) · Filtrado ks_flag = TRUE para sales (excluye demo)<br>
+    <em>Pendiente:</em> análisis de standing pricing dispersion por network_code (¿cuánto varía el precio de "Mondial" entre cuentas?), análisis cross-tax (¿hay productos que pagan iva mientras otras cuentas los marcan exentos?), análisis temporal (cuántos productos se crean por mes — ¿la curva acelera o se estabiliza?).
+  </footer>
+</div>
+</body>
+</html>
