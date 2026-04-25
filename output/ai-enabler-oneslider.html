@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI as an Enabler of Scalable Implementations — Board Oneslider</title>
+<style>
+  :root {
+    --koronet:#0c2541;
+    --koronet-soft:#13355e;
+    --accent:#ff8a3d;
+    --green:#2db974;
+    --gray:#5b6b7e;
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --line:#e4eaf1;
+    --shadow:0 1px 3px rgba(12,37,65,.08), 0 8px 24px rgba(12,37,65,.06);
+  }
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#0c2541;background:var(--bg);margin:0;padding:24px;line-height:1.45}
+  .slide{max-width:1280px;margin:0 auto;background:var(--card);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  header{background:linear-gradient(135deg,var(--koronet) 0%,var(--koronet-soft) 100%);color:#fff;padding:28px 36px}
+  header .eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#aac4e7;font-weight:700}
+  header h1{margin:6px 0 4px 0;font-size:30px;font-weight:700}
+  header .sub{font-size:14px;color:#dde9f6;max-width:880px}
+  .body{padding:24px 36px 28px 36px}
+  .objective{background:#f0f5fb;border-left:4px solid var(--accent);padding:14px 18px;border-radius:6px;margin-bottom:22px;font-size:13.5px;color:#1f3553}
+  .objective b{color:#0c2541}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px}
+  .card .badge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#fff;background:var(--koronet);padding:4px 8px;border-radius:999px;align-self:flex-start}
+  .card h3{margin:0;font-size:15px;font-weight:700;color:var(--koronet)}
+  .card .desc{font-size:12px;color:var(--gray);min-height:54px}
+  .metric{background:#fafcfe;border:1px dashed #d6e0eb;border-radius:8px;padding:10px 12px}
+  .metric .label{font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--gray);font-weight:700;margin-bottom:4px}
+  .metric .pair{display:flex;align-items:baseline;gap:8px;justify-content:space-between}
+  .metric .from{color:#94a3b8;font-size:14px;font-weight:600;text-decoration:line-through;text-decoration-color:#cbd5e0}
+  .metric .arrow{color:var(--accent);font-weight:800;font-size:16px}
+  .metric .to{color:var(--green);font-size:18px;font-weight:800}
+  .metric .note{font-size:10.5px;color:#94a3b8;margin-top:4px;font-style:italic}
+  .footer{display:grid;grid-template-columns:2.4fr 1fr;gap:20px;padding-top:20px;border-top:1px solid var(--line)}
+  .stack{font-size:12.5px;color:#26405e}
+  .stack b{color:var(--koronet)}
+  .stack ul{margin:6px 0 0 0;padding-left:18px}
+  .stack li{margin-bottom:3px}
+  .kpi-strip{background:linear-gradient(135deg,#0c2541 0%,#13355e 100%);color:#fff;padding:14px 16px;border-radius:10px;display:flex;flex-direction:column;justify-content:center}
+  .kpi-strip .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .kpi-strip .row:last-child{margin-bottom:0}
+  .kpi-strip .label{font-size:10.5px;color:#aac4e7;text-transform:uppercase;letter-spacing:.5px}
+  .kpi-strip .val{font-size:18px;font-weight:800;color:#fff}
+  .kpi-strip .val.green{color:#7be4a8}
+  .legend{font-size:10.5px;color:var(--gray);text-align:right;margin-top:14px}
+  .legend code{background:#eef3f9;padding:1px 5px;border-radius:3px;font-size:10px}
+  @media print{body{padding:0;background:#fff}.slide{box-shadow:none;border-radius:0}}
+</style>
+</head>
+<body>
+<div class="slide">
+  <header>
+    <div class="eyebrow">Implementation Org · Board Update</div>
+    <h1>AI as an Enabler of Scalable Implementations</h1>
+    <div class="sub">From <b>system configurators</b> to <b>activation consultants</b> — embedding AI to increase scalability, improve quality, and reduce manual work, while shifting team capacity toward customer outcomes.</div>
+  </header>
+  <div class="body">
+    <div class="objective">
+      <b>Objective:</b> Deliver greater business impact, not just system delivery. We are freeing the team from repetitive work (manual reports, coordination, documentation) so capacity flows into <b>analysis, brainstorming, problem-solving, and proactive account activation</b>. The transformation positions Implementation as a measurable lever on customer outcomes.
+    </div>
+
+    <div class="grid">
+      <!-- Move 1 -->
+      <div class="card">
+        <span class="badge">Move 1</span>
+        <h3>Standardizing Execution &amp; Visibility</h3>
+        <div class="desc">Implementation Hub + automated dashboards: real-time status, structured comms, consistent project management across all customers.</div>
+        <div class="metric">
+          <div class="label">Project visibility refresh</div>
+          <div class="pair">
+            <span class="from">weekly manual</span>
+            <span class="arrow">→</span>
+            <span class="to">daily auto</span>
+          </div>
+          <div class="note">PMO dashboards regenerate from SF + Snowflake on demand</div>
+        </div>
+        <div class="metric">
+          <div class="label">Stakeholder briefings</div>
+          <div class="pair">
+            <span class="from">scattered email</span>
+            <span class="arrow">→</span>
+            <span class="to">single hub</span>
+          </div>
+          <div class="note">All artifacts encrypted &amp; deployed to gh-pages</div>
+        </div>
+      </div>
+
+      <!-- Move 2 -->
+      <div class="card">
+        <span class="badge">Move 2</span>
+        <h3>Faster, Data-Driven Decisions</h3>
+        <div class="desc">A team of specialized AI agents continuously analyzes operational data — risks, opportunities, performance gaps — surfacing them earlier for proactive management.</div>
+        <div class="metric">
+          <div class="label">Time-to-first sale (Live cohort)</div>
+          <div class="pair">
+            <span class="from">unmeasured</span>
+            <span class="arrow">→</span>
+            <span class="to">3.5d median</span>
+          </div>
+          <div class="note">2026 Live cohort, 32 accounts (KPI-ACTIV-001)</div>
+        </div>
+        <div class="metric">
+          <div class="label">Activation visibility</div>
+          <div class="pair">
+            <span class="from">~0% tracked</span>
+            <span class="arrow">→</span>
+            <span class="to">53% activated</span>
+          </div>
+          <div class="note">Measured per account × TX type (Sale/Procure/Pay)</div>
+        </div>
+      </div>
+
+      <!-- Move 3 -->
+      <div class="card">
+        <span class="badge">Move 3</span>
+        <h3>Institutionalizing Knowledge</h3>
+        <div class="desc">AI accelerates playbooks, training materials, and standardized impl paths, building a centralized knowledge base that reduces dependency on individual expertise.</div>
+        <div class="metric">
+          <div class="label">Onboarding ramp (new agent)</div>
+          <div class="pair">
+            <span class="from">~6–8 wks</span>
+            <span class="arrow">→</span>
+            <span class="to">~2–3 wks</span>
+          </div>
+          <div class="note">Goal: Implementations Brain (24 client profiles MVP live)</div>
+        </div>
+        <div class="metric">
+          <div class="label">Best-practice docs</div>
+          <div class="pair">
+            <span class="from">tribal</span>
+            <span class="arrow">→</span>
+            <span class="to">searchable</span>
+          </div>
+          <div class="note">Concept doc + 24 auto-generated client profiles</div>
+        </div>
+      </div>
+
+      <!-- Move 4 -->
+      <div class="card">
+        <span class="badge">Move 4</span>
+        <h3>Eliminating Repetitive Work</h3>
+        <div class="desc">Multiple AI automations reducing manual reporting, coordination, and documentation — freeing capacity for customer value &amp; delivery quality.</div>
+        <div class="metric">
+          <div class="label">Implementation manager output</div>
+          <div class="pair">
+            <span class="from">N accts/FTE</span>
+            <span class="arrow">→</span>
+            <span class="to">~2N accts/FTE</span>
+          </div>
+          <div class="note">Expectation as automations land (status, alerts, comms)</div>
+        </div>
+        <div class="metric">
+          <div class="label">Recurring manual reports</div>
+          <div class="pair">
+            <span class="from">~8 hrs/wk/lead</span>
+            <span class="arrow">→</span>
+            <span class="to">&lt;1 hr/wk</span>
+          </div>
+          <div class="note">PMO + Risk + Payments dashboards now self-refresh</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="stack">
+        <b>What's already shipped (and measurable today):</b>
+        <ul>
+          <li><b>9 specialized AI agents</b> — PMO, risk, payments, implementations brain, briefings, succession, activation analytics</li>
+          <li><b>Implementation Hub</b> live on GitHub Pages with encrypted artifacts (PMO, Risk Monitor, Payments, Activation, Customer Dashboards)</li>
+          <li><b>Cross-account analytics</b> previously impossible: products catalog (697 accts), KPay penetration, digital procurement adoption, network effect</li>
+          <li><b>Daily morning briefing</b> auto-generated from Slack + Gmail + industry sources + internal data</li>
+          <li><b>Customer Risk Monitor</b> with WoW deltas, churn tracking, activation type per account (Live 2026 cohort)</li>
+        </ul>
+      </div>
+      <div class="kpi-strip">
+        <div class="row"><span class="label">Live 2026 cohort</span><span class="val">32 accts</span></div>
+        <div class="row"><span class="label">Activated</span><span class="val green">17 (53%)</span></div>
+        <div class="row"><span class="label">Median TTF Sale</span><span class="val green">3.5 days</span></div>
+        <div class="row"><span class="label">Median TTF KPay</span><span class="val green">8 days</span></div>
+        <div class="row"><span class="label">AI agents in pipeline</span><span class="val">9</span></div>
+      </div>
+    </div>
+
+    <div class="legend">
+      Source: Salesforce (Live 2026 cohort) + Snowflake (TX, KPay, procurement) · Build: <code>alba/scripts/build-activation-kpis.ts</code> · Baseline framing: pre-AI manual baseline from team self-report &amp; expectation, not measured target.
+    </div>
+  </div>
+</div>
+</body>
+</html>
